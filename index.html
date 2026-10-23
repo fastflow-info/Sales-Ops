@@ -1,0 +1,2162 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  HELM · FOLLOW-UPS — today-followups.html
+  Version : v9.5 "Balanced Columns & Level Callouts"
+  Date    : Friday, October 23, 2026
+  Changed in this version:
+    - Every Estimate Due Today (and Yesterday's list): on wide screens the
+      other columns now take their share of the width instead of leaving
+      it all to Customer — each column is "at least X px, or its % of the
+      table", Customer gets what's left.
+    - Donut callouts: no more "horns". Each label sits level with its
+      slice and the line leaves the ring sideways in a gentle curve,
+      instead of shooting up and over from slices near the top.
+  Based on: v9.4 "Sales Ops · Normal Spacing".
+  v9.4 changes:
+    - Header and footer read "Sales Ops" (was Follow-Ups).
+    - Letter spacing reduced across the whole page so words read
+      normally: wide tracking (.1em and up) is now under half of what it
+      was, medium tracking ~30% less, tight tracking unchanged.
+      Exception: "Open in CoreBridge" keeps its spacing and its text is
+      bigger (9.5px → 11px).
+  Based on: v9.3 "Logo Resets".
+  v9.3 changes:
+    - Click the FASTSIGNS logo to start over: every filter is cleared
+      (back to Both Districts, everyone, Today, All, All Stages, no
+      search, card closed), the page scrolls to the top and the data is
+      refreshed from the sheet.
+  Based on: v9.2 "Coloured Header & Compact Card".
+  v9.2 changes:
+    - Header wears the colour of what's selected, like Helm: a centre's
+      own colour, Valley = Tarzana's maroon, South Bay = Long Beach's
+      blue (deepened 26% so the white text reads), black for Both
+      Districts. It colours as soon as you pick, not only when scrolled.
+    - Estimate card is compact so steps, record and notes are in view
+      without scrolling: price and follow-ups sit beside the name, the
+      details are a tighter 3-column grid in smaller type, the Approved /
+      Canceled band is slimmer, and the section gaps are smaller.
+  Based on: v9.1 "One-Line Header".
+  v9.1 changes:
+    - The top bar is a single line now (no second layer, nothing folds
+      away on scroll): FASTSIGNS logo (taken from Helm) · Follow-Ups,
+      Today · Yesterday, the districts, then the centres, and on the
+      right the live dot, update time and Refresh. The logo turns white
+      when the bar turns dark.
+  Based on: v9.0 "Card Refinements".
+  v9.0 changes:
+    - Card: customer name 40% smaller (30px → 18px), regular weight.
+    - "Open in CoreBridge" uses the supplied arrow icon (arrow-right1.svg,
+      drawn in the link colour; it slides right on hover) and has more
+      room around it: 40px above, 6px more below.
+  Based on: v8.9 "Only Today's Finals".
+  v8.9 changes:
+    - Fixed: estimates approved or canceled on an earlier day no longer
+      show up as "due today" just because a later schedule is dated today
+      (e.g. canceled Oct 19 at step 1, step 5 dated today). An estimate
+      that is approved or canceled shows in today's list, tabs, charts
+      and counts only if it was approved / canceled today — same rule as
+      the sheet's own dashboard. Its history stays in the card and the
+      record; search still finds it.
+  Based on: v8.8 "Smooth Again".
+  v8.8 changes:
+    - Last Two Weeks: lines are smooth curves again (as in v8.6), in both
+      views.
+    - A very thin vertical line runs from each date up through the chart,
+      so every dot is easy to read against its day.
+  Based on: v8.7 "Hover a Line".
+  v8.7 changes:
+    - Last Two Weeks: hover right on a line and that salesperson lights
+      up (thicker, the others fade), their value shows on every day of
+      the line (e.g. 83%), and a card shows that day: completion, done
+      of due, missed, and their two-week total. Away from any line, the
+      card shows the whole team for that day.
+    - Completion-rate lines are now straight (no swooping curves) and
+      quieter by default, so the chart reads calmer.
+  Based on: v8.6 "Completion Rate Trend".
+  v8.6 changes:
+    - Last Two Weeks now measures performance fairly. A toggle
+      "Completion rate · Missed" sits above the chart:
+        · Completion rate (default): each salesperson's line = done ÷ due
+          that day (0–100%); the mountain behind = the team's rate. A day
+          with nothing due leaves a gap (no fake 0% / 100%); days with only
+          1–2 due get a smaller dot. Legend = two-week rate, e.g. 76% 63/83.
+        · Missed: each line = follow-ups not done that day; the mountain =
+          team missed on its own scale (right).
+      Colours stay the same per person in both views.
+  Based on: v8.5 "Two Weeks, per Salesperson".
+  v8.5 changes:
+    - Last Two Weeks now shows one line per salesperson (follow-ups done
+      each workday), each in its own colour, over the team total drawn
+      behind as a solid "mountain": light navy = team done, the paler
+      layer above it = team due (so the gap is what wasn't done).
+      Names + today's count sit at the end of each line; a legend under
+      the chart lists everyone with their two-week done / due. Hover a
+      name (legend or line end) to light up that line and fade the rest;
+      click to focus that salesperson across the whole page. Hover a day
+      for every salesperson's numbers that day.
+  Based on: v8.4 "Team Columns & Two-Week Trend".
+  v8.4 changes:
+    - New big chart under the four charts: "Whole Team · Today" — one
+      tall column per salesperson (same style as By Centre), navy = done,
+      very light grey = still unattended, "6/12" on top. Hover for the
+      numbers; click a column to focus that person.
+    - New chart at the very bottom: "Follow-Ups · Last Two Weeks" — two
+      lines over the last 10 workdays: Done (navy, with a soft fill) and
+      Not done (grey). Each day = the follow-ups due that day. Today is
+      marked "so far". Hover a day for the numbers and the done rate.
+      It keeps rolling forward every day. Follows the district / centre
+      buttons and a focused salesperson. Uses the sheet plus the column
+      AO record, so rescheduled / re-triggered misses still count.
+  v8.3 changes:
+    - Unattended / Missed grey made even lighter (about half of v8.2):
+      bars and columns fade from 1.5% to 6.5% ink, donut slice #ECEDF0.
+  Based on (v8.3): v8.2 "Lighter Grey".
+  v8.2 changes:
+    - Salesperson names in the tables are in capital letters, a little
+      lighter (medium instead of semibold) and slightly spaced.
+    - Unattended / Missed grey in every chart is now a very light grey
+      (bars, columns and the donut slice).
+  Based on: v8.1 "Yesterday, always in reach".
+  v8.1 changes:
+    - Today · Yesterday moved to the start of the second line of the top
+      bar (before Both Districts), so it stays visible even when the top
+      line folds away on scroll. The first line shows FASTSIGNS · Follow-Ups
+      again in the middle.
+  Based on: v8.0 "Yesterday".
+  v8.0 changes:
+    - Way back to everyone: when one salesperson is focused, a "Show
+      everyone" button sits right in the sentence under the figures,
+      and Esc also brings everyone back.
+    - New "Yesterday" view, switched from the top bar (Today · Yesterday).
+      Yesterday = the last workday before today (Monday shows Friday).
+        · Figures: due, done on time, done late (today), still missed,
+          value of the estimates with a miss.
+        · Yesterday by Salesperson: due, on time, late, missed, on-time
+          rate, missed $ — with its own chart beside it, bar per row.
+        · Every follow-up that slipped: each missed or late follow-up,
+          what happened since (still open / done today / moved to a new
+          date), click one to open it.
+      Built from the sheet + the record in column AO (FollowUpRecord.gs
+      v1.7 and TodayFollowUps.gs v1.9 keep misses even after a
+      follow-up is rescheduled). Follows the district / centre buttons.
+  Based on: v7.9 "One by One & Drill-Down".
+  v7.9 changes:
+    - Charts in a row now arrive one by one, left to right: each fades
+      and rises in, then its bars grow and numbers count, then the next
+      chart starts (about a third of a second apart).
+    - Drill-down from Today by Salesperson: click a number (Scheduled,
+      Done, Unattended, Approved, Canceled) on a person's row — or on
+      the Total row — and the page glides to Every Estimate Due Today,
+      filtered to that person and that list (e.g. Jeremy · Still open).
+      The same works on the figures at the top (Done, Unattended,
+      Approved today, Canceled today).
+    - A filter line above the table says what you're looking at, with a
+      "Clear" to go back to everyone.
+  Based on: v7.8 "Living Charts".
+  v7.8 changes:
+    - Charts play when they scroll into view (not all at once on load),
+      and replay when you switch district or centre.
+    - Columns rise one after another with a soft spring (a slight
+      overshoot, then settle); horizontal bars sweep in one row after
+      another; table completion bars follow their rows.
+    - Every number on a chart counts up from zero as its bar grows
+      (53%, $481K, 204…), then settles.
+    - Donut: the ring turns into place while each slice draws in turn,
+      the centre total counts up, then the callouts fade in.
+    - Hover a column or a bar: the others dim so the one you're on
+      stands out.
+  Based on: v7.7 "Reveal".
+  v7.7 changes:
+    - Row hover and the opened row are a very light grey (no more pink);
+      the opened row also gets a thin navy edge on the left and a soft
+      grey flash when clicked.
+    - Opening an estimate is choreographed: the card unfolds from the top
+      out of a blur, the customer name rises word by word, a light navy
+      sheen sweeps across once, the price counts up, details and steps
+      cascade in, then the record and notes follow line by line.
+    - Search results slide in one after another, out of a soft blur.
+    - All of it is skipped for people who set "reduce motion".
+  Based on: v7.6 "Follow-Up Record".
+  v7.6 changes:
+    Uses the follow-up record in column AO (FollowUpRecord.gs), sent by
+    TodayFollowUps.gs v1.8 as "rec" on each estimate.
+    - Estimate card: new "Record · All rounds" section — every follow-up
+      ever done, grouped by round (New / Unclosed), each with the day it
+      was recorded, schedule number, Email or Call, and "Late 2d" when it
+      was recorded after its due date.
+    - Every Estimate Due Today: new "Total" column — follow-ups done
+      across all rounds, with an R2 / R3 mark when the estimate is on a
+      later round. Sortable.
+    - Section 05: two new columns — "All rounds" (done across every round,
+      hover for New / Unclosed) and "To win" (average follow-ups on the
+      estimates that got Approved). New row under it: "Recorded per week"
+      (last 10 weeks, Emails navy / Calls light blue) and "Estimates by
+      round" (how many are on round 1, 2, 3+).
+    - Without the record (old server), everything above simply hides.
+  Based on: v7.5 "All-Time Completion".
+  v7.5 changes:
+    - New section 05 "Follow-Up Completion · All Time" below screen two:
+      who completes their follow-ups best across the whole sheet, not
+      just today. A ranked table and a bar chart beside it, each bar on
+      its row's level. The best rate gets a "Top" mark.
+    - How it counts: every follow-up whose date has passed is "due".
+      Done = it has a status (Follow-Up, Approved or Closed). Missed =
+      date passed and still blank. Today's follow-ups count only once
+      done (they aren't missed yet). Steps after an estimate was
+      approved or canceled are not counted (they weren't needed).
+    - Follows the lens (both districts, Valley, South Bay, a centre).
+  Based on: v7.4 "Approved & Canceled Tabs".
+  v7.4 changes:
+    - Every Estimate Due Today tabs: All, Still Open, Done, Approved,
+      Canceled. Approved / Canceled show only finalized estimates;
+      they combine with the stage filter and the lens.
+    - A footer: generous space at the bottom of the page, a fine rule,
+      the page name and when the data was last updated.
+  Based on: v7.3 "Solid Rows".
+  v7.3 changes:
+    - Approved rows are solid navy and canceled rows solid red, with
+      white text. Tags, dates, dots and the centre mark turn white to
+      match. Hover darkens slightly; the opened row gets a white edge.
+  Based on: v7.2 "Red & Blue Rows".
+  v7.2 changes:
+    - Canceled is red everywhere: the Canceled tag (red background,
+      white text), the canceled step circle and its label, the card
+      banner, and the Canceled slice of the Today's Money donut.
+    - Every Estimate Due Today: a canceled row gets a soft red
+      background, an approved row a soft blue one, so both stand out
+      at a glance. Hover and the opened row still show.
+  Based on: v7.1 "Steps Fix".
+  v7.1 changes:
+    - Fixed: a canceled estimate's follow-up steps fell apart (step 5
+      spilled sideways across the line). The canceled step used a class
+      name already taken by another chart. Renamed, so it lays out like
+      every other step.
+    - Small gap between steps so "Missed" and "Done" never touch.
+  Based on: v7.0 "Stage Filter".
+  v7.0 changes:
+    - Every Estimate Due Today has a stage filter row under All / Still
+      Open / Done: All Stages, Active Pipeline, Estimate Not Sent, Site
+      Visit, In Motion... every stage in today's list, each with its
+      count. Works together with All / Still Open / Done and the
+      district/centre lens. Biggest stages first.
+  Based on: v6.9 "Quiet Search".
+  v6.9 changes:
+    - Find an Estimate search is smaller and quieter: 13.5px text
+      (was 22px), smaller icon, tighter line under it.
+  Based on: v6.8 "Curved Callouts".
+  v6.8 changes:
+    - Donut labels are two lines, not three: "17%  $97K" on top, the
+      name (Canceled) underneath.
+    - The lines to each slice are soft curves instead of straight
+      elbows, ending in a small dot.
+  Based on: v6.7 "Callout Donut".
+  v6.7 changes:
+    - Today's Money donut is bigger and labels itself: a thin line points
+      from each slice to its percentage and name (Followed up,
+      Unattended, Approved, Canceled). The legend below is gone.
+    - "Which Step Is Due" replaced by "How Old Today's Estimates Are":
+      today's estimates by age since created (0–14, 15–30, 31–60,
+      60+ days), in dollars, followed up navy / unattended grey.
+    - The donut column is wider, the age chart narrower (4 bars).
+  Based on: v6.6 "Matching Tables".
+  v6.6 changes:
+    - Every Estimate Due Today now matches Today by Salesperson: solid
+      black header with white labels, no grid or outline, only a faint
+      line between rows. Sort arrow shows on the active column.
+    - Card "Created" is one line, no break: "Apr 23 · 182 days ago"
+      (year only shown when it isn't this year).
+  Based on: v6.5 "Black Header".
+  v6.5 changes:
+    - Today by Salesperson restyled: a solid black header with white,
+      slightly larger labels and no lines inside it; the grey grid is gone,
+      leaving only a faint line between rows; the Total row is set apart by
+      a fine ink rule, in navy, with the label in tracked capitals.
+  Carried over from v6.4:
+    - A finished follow-up reads "Done" with the DealBoard check mark
+      (note-done.svg), never "Follow-Up" — in the table, the search list
+      and the six steps.
+    - New Created column in Every Estimate Due Today, from DATE CREATED
+      (column AH): the date and how many days ago. Red when the estimate
+      is more than 7 days old; marked "At risk" when it is still Estimate
+      Not Sent more than 5 days after it was created. Sortable. The card
+      shows Created too.
+    - Needs TodayFollowUps.gs v1.6 (it sends the created date).
+  Carried over from v6.3:
+    - Find an Estimate opens a card instead of a crowded sheet: the
+      customer big at the top, the number under it, total price and
+      follow-ups done side by side, then Salesperson / Centre, Stage /
+      Type, Contact / Description in two columns. No inner rules — space
+      does the separating.
+    - Notes are tighter: the date sits on its own small line right above
+      the note, and the note text is smaller.
+  Carried over from v6.2:
+    - An estimate that is Approved (or Closed, shown as Canceled) in any
+      step is treated as finished everywhere. Lists and tables say
+      "Approved · Oct 6" in a navy tag instead of "Email due". Opening it
+      shows a navy band — Approved on Oct 6, 2026 at step 1 — and the steps
+      after it read "Not needed" instead of Missed or Due today.
+    - By Salesperson lines up with the table: each person's bar sits on
+      the same level as their row, whatever the row heights.
+    - Table headers now sit flush when you scroll; the Today column is
+      wider so its text isn't cut.
+  Carried over from v6.1 (layout):
+    - Fix: the header's top row now slides away without changing the page
+      height, so scrolling no longer jitters.
+    - Row one: Today by Salesperson with By Salesperson beside it, the
+      bars now running wide.
+    - Row two: four charts across the full width, taller — Today's Money
+      (the donut), By Centre, Money by Stage, Which Step Is Due.
+    - Screen two: Every Estimate Due Today on the left and Find an
+      Estimate on the right, side by side. Clicking a row opens it in the
+      panel beside it.
+  Carried over from v6.0 "Fits Any Day":
+    - Row one now fits whatever the day brings. The two charts beside the
+      table stretch to the table's height, so 5 salespeople or 12, there is
+      no empty space under them. By Salesperson is horizontal, one bar per
+      person in the same order as the table, spread down the full height;
+      the donut sits centred beside it.
+    - Row two: the three charts fill their width — wider columns, tighter
+      gaps — so there is no loose white space between them.
+  Carried over from v5.9 "Breathing Room":
+    - More air between The Day, the table-and-charts row, and the
+      charts-and-find row.
+    - Proposed refinements, for review:
+      · Numbered eyebrows above each section, as Helm does (01 The Day ...).
+      · Point at a salesperson in the table and their column lights up in
+        By Salesperson while the others fade; the same in reverse.
+      · A live LA clock beside the date.
+      · On open, the sections arrive one after another, softly.
+  Carried over from v5.8:
+    - The rules under the section titles are gone (Today by Salesperson,
+      Find an Estimate, Every Estimate Due Today).
+  Carried over from v5.7 "Navy":
+    - No black in the charts. Done and followed up are FASTSIGNS navy,
+      fading from a pale blue at the label to deep navy at the tip. The
+      donut: followed up navy, approved light blue, unattended grey,
+      canceled pale grey.
+    - Today by Salesperson gets its own Completion column: a slim navy bar
+      with the percent beside it. The little line under each name is gone.
+    - Both tables are drawn with a thin outline and thin inner lines.
+  Carried over from v5.6 "Light to Dark":
+    - Gradients turned round: every bar starts light at the label and
+      ends dark at its tip (bottom to top on columns, left to right on
+      bars). Same for the line under each salesperson.
+    - Row two: Find an Estimate is narrower and closer, so the three charts
+      get the room. By Centre is slimmer (five centres at most), Money by
+      Stage and Which Step Is Due wider.
+  Carried over from v5.5:
+    - New arrangement. Row one: Today by Salesperson (the sheet's table) on
+      the left, Today's Money donut and By Salesperson on the right. Row
+      two: By Centre, Money by Stage (horizontal again) and Which Step Is
+      Due on the left, Find an Estimate on the right.
+    - Unattended is grey everywhere — charts, donut, figures and table.
+      Done and followed up are ink.
+    - Charts a little taller. The rules above the charts and above the
+      day's figures are gone.
+  Carried over from v5.4 "Tall Charts":
+    - Charts are vertical and taller. New donut: Where Today's Money Is —
+      followed up, unattended, approved and canceled, with the total in
+      the middle. Then By Salesperson, By Centre, Money by Stage and
+      Which Step Is Due, all as fading vertical columns.
+    - The figures across the top lose their dividing lines, and gain
+      Canceled (the sheet's "Closed" status). The table says Canceled too.
+  Carried over from v5.3 "Charts First" (layout):
+    - The page opens on the charts. Screen one, top to bottom: the day's
+      figures across the full width, then four charts side by side —
+      Money by Stage, By Salesperson (new: done against unattended),
+      By Centre, Which Step Is Due — then the sheet's table on the left
+      and Find an Estimate on the right.
+    - Screen two is the full-width table of every estimate due today.
+  Carried over from v5.2 "Fading Charts":
+    - Every chart bar is now a soft gradient that fades along its length:
+      unattended in deep red, followed up in pale ink, centres in their
+      own colour fading to a tint. Bars sit on a faint track with rounded
+      ends; columns fade from ink at the top to a lighter base.
+    - The progress line under each salesperson fades the same way.
+  Carried over from v5.1 "The Sheet's Table":
+    - The Day now leads with the same table as the sheet's own G2
+      dashboard (updateTodayDashboard v3): Salesperson, Scheduled, Done,
+      Unattended, Emails, Calls, Approved, Closed, Remaining, and TOTAL.
+      Counted with the sheet's exact rules: a row already Approved or
+      Closed in any slot is left out of Scheduled; Done means today's
+      status is "Follow-Up"; anything else is Unattended; Approved or
+      Closed today adds the row's price to those columns; Remaining adds
+      the price for each open slot due today.
+    - Above it, five figures from the same count. "Still open", the
+      untouched list and the charts all use the same rules now.
+  Carried over from v5.0 "Two Screens":
+    - The ribbon is gone. The page is now a mini dashboard in two full
+      screens, in Helm's language (Jost, ink, hairlines, tracked labels).
+    - Screen one, left: find any estimate. Search covers the whole sheet.
+      With nothing typed it lists today's untouched estimates, biggest
+      first. Pick one and it opens in place: value, stage, salesperson,
+      the six steps, and the notes as dated bullet points, newest first.
+    - Screen one, right: the day. Ring for % done, then Due Today,
+      Followed Up, Unattended, Estimate Not Sent, Emails, Calls, and a
+      compact line per salesperson.
+    - Screen two, left: every estimate due today in one sortable table
+      (tabs: All, Still Open, Done). Click a row and it opens on screen one.
+    - Screen two, right: three quiet charts — money by stage (unattended
+      against followed up), by centre, and which of the six steps is due.
+    - Districts and centres in the header still filter everything.
+  Based on: today-followups.html v6.4 "Done, Not Follow-Up" (same live API,
+    instant local cache, 5-minute refresh, Refresh = fresh data).
+    Needs TodayFollowUps.gs v1.5.
+  ============================================================
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sales Ops — Follow-Ups</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://script.google.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --topbar-l1:0px; --topbar-l2:54px; --topbar:calc(var(--topbar-l1) + var(--topbar-l2));
+  --ink:#0E0F13; --ink-soft:#4A4C55; --ink-faint:#9A9BA3;
+  --red:#DA2128; --red-deep:#9E1219;
+  --valley:#97005E; --southbay:#004990;
+  --paper:#FFFFFF; --wash:#F6F7F9;
+  --rule:rgba(14,15,19,0.13); --rule-soft:rgba(14,15,19,0.08); --line:rgba(14,15,19,0.12);
+  --sans:'Jost','Gill Sans','Gill Sans MT',Optima,system-ui,sans-serif;
+  --ease:cubic-bezier(0.16,1,0.3,1);
+  --pad:54px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:300;-webkit-font-smoothing:antialiased}
+button{font-family:var(--sans);color:inherit;cursor:pointer}
+
+/* ===== BOOT ===== */
+.boot{position:fixed;inset:0;z-index:900;background:var(--paper);display:flex;align-items:center;justify-content:center;transition:opacity .7s var(--ease)}
+.boot.done{opacity:0;pointer-events:none}
+.boot-ring{position:relative;width:clamp(180px,22vw,280px);aspect-ratio:1;display:grid;place-items:center}
+.boot-ring svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+.boot-ring circle{fill:none;stroke-width:1.5}
+.boot-ring .track{stroke:var(--rule)}
+.boot-ring .arc{stroke:var(--ink);stroke-linecap:round;transition:stroke-dashoffset .35s var(--ease)}
+.boot-fig{display:flex;align-items:flex-start;gap:4px;line-height:.9}
+.boot-fig b{font-size:clamp(44px,5.6vw,80px);font-weight:200;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.boot-fig i{font-style:normal;font-size:16px;margin-top:.5em;color:var(--ink-faint)}
+
+/* ===== HEADER (Helm, two layers) ===== */
+.topbar{position:sticky;top:0;z-index:60;background:var(--paper);color:var(--ink);transition:background .45s var(--ease),color .45s var(--ease),transform .5s var(--ease)}
+html{overflow-anchor:none}
+.topbar.stuck{background:var(--topbar-bg, var(--ink));color:var(--paper)}
+.topbar.tinted{background:var(--topbar-bg);color:var(--paper)}
+.topbar.tinted .tb-brand .logo{filter:brightness(0) invert(1)}
+.tb-l1{height:var(--topbar-l1);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 var(--pad);overflow:hidden;transition:height .5s var(--ease),opacity .4s var(--ease)}
+.topbar.retracted{transform:none}
+.tb-one{height:var(--topbar-l2);display:flex;align-items:center;padding:0 var(--pad);white-space:nowrap}
+.tb-brand{cursor:pointer;display:flex;align-items:center;gap:12px;transition:opacity .3s;font-size:9px;letter-spacing:.145em;text-transform:uppercase;font-weight:600}
+.tb-brand:hover{opacity:.75}
+.tb-brand .logo{height:15px;width:auto;display:block;filter:brightness(0);transition:filter .45s var(--ease)}
+.topbar.stuck .tb-brand .logo{filter:brightness(0) invert(1)}
+.tb-brand span{opacity:.75}
+.tb-fill{flex:1;min-width:12px}
+.tb-one .nav button{padding:11px 12px}
+.tb-one .nav button::after{left:12px;right:12px}
+.tb-one .tb-right{margin-left:4px}
+@media (max-width:1500px){#updated{display:none}}
+@media (max-width:1280px){.tb-brand span{display:none}.tb-one .nav button{padding:11px 9px;font-size:9px;letter-spacing:.065em}.tb-one .nav button::after{left:9px;right:9px}}
+.topbar.retracted .tb-l1{opacity:0;pointer-events:none}
+.tb-l1{transition:opacity .4s var(--ease)}
+.tb-left{font-size:9px;letter-spacing:.11em;text-transform:uppercase;font-weight:500}
+.tb-mark{font-size:9px;letter-spacing:.145em;text-transform:uppercase;font-weight:600;white-space:nowrap}
+.tb-mark span{opacity:.5;font-weight:400}
+.tb-right{justify-self:end;display:flex;align-items:center;gap:16px;font-size:9px;letter-spacing:.09em;text-transform:uppercase;font-weight:500;white-space:nowrap}
+.live-dot{width:5px;height:5px;border-radius:50%;background:currentColor;animation:breathe 2.4s ease-in-out infinite}
+.live-dot.busy{background:var(--red)}
+@keyframes breathe{0%,100%{opacity:.35}50%{opacity:1}}
+.tb-refresh{border:0;background:transparent;font-size:9px;letter-spacing:.09em;text-transform:uppercase;font-weight:600;position:relative;padding:6px 0}
+.tb-refresh::after{content:'';position:absolute;left:0;right:0;bottom:2px;height:1px;background:currentColor;transform:scaleX(.4);opacity:.5;transition:transform .45s var(--ease),opacity .35s}
+.tb-refresh:hover::after{transform:scaleX(1);opacity:1}
+.tb-l2{position:relative;height:var(--topbar-l2);display:flex;align-items:center;justify-content:space-between;gap:18px;padding:0 var(--pad)}
+.tb-l2::before{content:'';position:absolute;left:var(--pad);right:var(--pad);top:0;height:1px;background:currentColor;opacity:.08}
+.nav{display:flex;align-items:center}
+.nav button{position:relative;border:0;background:transparent;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:400;padding:11px 15px;display:flex;align-items:center;gap:9px;white-space:nowrap}
+.nav button::after{content:'';position:absolute;left:15px;right:15px;bottom:7px;height:1.5px;background:currentColor;opacity:0;transform:scaleX(.4);transition:opacity .35s var(--ease),transform .45s var(--ease)}
+.nav button[aria-pressed="true"]{font-weight:700}
+.nav button[aria-pressed="true"]::after{opacity:1;transform:scaleX(1)}
+.nav button:hover::after{opacity:.45;transform:scaleX(1)}
+.nav button i{width:2px;height:13px;border-radius:1px;display:block}
+
+/* ===== SCREENS ===== */
+.screen{height:calc(100vh - var(--topbar));padding:22px var(--pad) 26px;display:grid;gap:56px}
+.s1{grid-template-columns:1fr;grid-template-rows:auto auto auto;gap:58px;height:auto;min-height:calc(100vh - var(--topbar))}
+.s1 .top{display:flex;flex-direction:column}
+.s1 .top .col-h{border-bottom:0;padding-bottom:0}
+.chart-head{border-bottom:0!important}
+.chart-row{display:grid;gap:30px;min-width:0}
+.chart-row > div{opacity:0;transform:translateY(18px);filter:blur(4px);transition:opacity .8s cubic-bezier(.16,.84,.24,1),transform .9s cubic-bezier(.16,.84,.24,1),filter .8s;transition-delay:var(--cd,0s)}
+.chart-row.played > div{opacity:1;transform:none;filter:none}
+td[data-go]{cursor:pointer;position:relative}
+td[data-go]:hover{color:#0A2F5C;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+.fig.go{cursor:pointer;transition:transform .35s cubic-bezier(.16,.84,.24,1)}
+.fig.go:hover{transform:translateY(-2px)}
+.fig.go:hover .k{color:#0A2F5C}
+.tb-l2-left{display:flex;align-items:center;min-width:0}
+.tb-sep{width:1px;height:14px;background:currentColor;opacity:.25;margin:0 10px}
+.views button{font-weight:600}
+body.view-y #s1,body.view-y #s2,body.view-y #s3,body.view-y #s5{display:none}
+.row-c .vc{height:380px}
+.row-c .vcol .stk{width:min(64px,58%)}
+.row-c .vcol{cursor:pointer}
+.row-c .vx span{font-size:9px;letter-spacing:.055em}
+.row-c .vcol .n small{font-weight:500;color:var(--ink-soft);font-size:10px}
+.s5{padding:0 var(--pad);margin-top:80px}
+.s5-in{border-top:1px solid var(--ink);padding-top:30px}
+#chTrend{margin-top:22px}
+#chTrend svg{width:100%;height:auto;display:block;overflow:visible}
+.tr-grid line{stroke:rgba(14,15,19,.06)}
+.tr-grid line.vday{stroke:rgba(14,15,19,.07);stroke-width:.75}
+.tr-grid text,.tr-x text{font-family:var(--sans);font-size:10px;fill:var(--ink-soft);font-variant-numeric:tabular-nums}
+.tr-x text.wd{font-size:8.5px;letter-spacing:.065em;font-weight:600;text-transform:uppercase}
+.tr-x text.today{fill:#0A2F5C;font-weight:700}
+.tr-line{fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.8s cubic-bezier(.65,0,.35,1) var(--d,0s),opacity .3s,stroke-width .3s}
+.tr-edge{fill:none;stroke:#3F6E9E;stroke-width:1;stroke-opacity:.6;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.6s cubic-bezier(.65,0,.35,1)}
+#chTrend.on .tr-edge{stroke-dashoffset:0}
+.tr-end text{font-family:var(--sans);font-size:10.5px;font-weight:600;letter-spacing:.04em;transition:opacity .3s}
+#chTrend.focus .tr-line:not(.hi){opacity:.12}
+#chTrend.focus .tr-end text:not(.hi){opacity:.25}
+#chTrend.focus .tr-line.hi{stroke-width:3}
+#chTrend.focus .tr-pt,#chTrend.settled .tr-pt{transition-delay:0s}
+#chTrend.focus .tr-pt:not(.hi){opacity:.1}
+#chTrend{margin-top:12px}
+.tr-grid text.ax{font-size:8.5px;letter-spacing:.065em;font-weight:600;text-transform:uppercase}
+.tr-grid text.axt{fill:rgba(63,110,158,.6);font-size:9.5px}
+.tr-grid text.axt2{fill:rgba(63,110,158,.75)}
+.tr-legend{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:18px}
+.tr-legend button{border:0;background:none;display:inline-flex;align-items:baseline;gap:7px;font-size:10px;font-weight:600;letter-spacing:.045em;text-transform:uppercase;color:var(--ink);cursor:pointer;padding:4px 0;transition:opacity .3s}
+.tr-legend button i{width:14px;height:3px;border-radius:2px;align-self:center}
+.tr-legend button b{font-weight:700;color:#0A2F5C;letter-spacing:.02em}
+.tr-legend button span{color:var(--ink-faint);font-weight:500;letter-spacing:.02em}
+#chTrend.focus .tr-legend button:not(.hi){opacity:.35}
+.tr-area{opacity:0;transition:opacity 1.2s .2s}
+.tr-pt{opacity:0;transform-box:fill-box;transform-origin:center;transform:scale(.3);transition:opacity .4s,transform .5s cubic-bezier(.34,1.5,.5,1);transition-delay:var(--d,0s)}
+.tr-end{opacity:0;transition:opacity .6s 1.9s}
+#chTrend.on .tr-line{stroke-dashoffset:0}
+#chTrend.on .tr-area{opacity:1}
+#chTrend.on .tr-pt{opacity:1;transform:none}
+#chTrend.on .tr-end{opacity:1}
+.tr-guide{stroke:rgba(10,47,92,.28);stroke-dasharray:3 3;opacity:0;transition:opacity .2s;pointer-events:none}
+.tr-guide.on{opacity:1}
+.tr-hit{fill:transparent;cursor:crosshair}
+.tr-vals{opacity:0;transition:opacity .25s;pointer-events:none}
+.tr-vals text{font-family:var(--sans);font-size:10.5px;font-weight:700;font-variant-numeric:tabular-nums;paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round}
+#chTrend.focus .tr-vals.hi{opacity:1}
+#chTrend .tr-line{stroke-opacity:.7}
+#chTrend.focus .tr-line.hi{stroke-opacity:1}
+#s4{display:none;padding:22px var(--pad) 0}
+body.view-y #s4{display:block;animation:rise .7s cubic-bezier(.16,.84,.24,1) both}
+.y-g{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:44px;margin-top:36px}
+.y-g > div{display:flex;flex-direction:column;min-width:0}
+#chY{flex:1;position:relative;min-height:200px}
+#chY .hb{position:absolute;left:0;right:0;transform:translateY(-50%);grid-template-columns:120px 1fr 46px;gap:14px;padding:0}
+#chY .hb .rail{height:12px;border-radius:6px}
+#chY .hb .l{font-size:9.5px;letter-spacing:.035em}
+#chY:hover .hb{opacity:.4} #chY .hb:hover{opacity:1}
+.y-list{margin-top:56px}
+.now-open{color:var(--red-deep);font-weight:700;font-size:9.5px;letter-spacing:.055em;text-transform:uppercase}
+.now-done{color:#0A2F5C;font-weight:700;font-size:9.5px;letter-spacing:.055em;text-transform:uppercase;display:inline-flex;align-items:center;gap:4px}
+.now-done svg{width:11px;height:11px}
+.now-moved{color:var(--ink-soft);font-weight:600;font-size:9.5px;letter-spacing:.055em;text-transform:uppercase}
+.y-tag{display:inline-block;font-size:8.5px;font-weight:700;letter-spacing:.045em;text-transform:uppercase;padding:2px 6px 1px;border-radius:2px}
+.y-tag.miss{background:rgba(14,15,19,.08);color:var(--ink)}
+.y-tag.late{background:rgba(127,167,209,.25);color:#0A2F5C}
+.show-all{border:0;background:none;font:inherit;font-size:10px;font-weight:700;letter-spacing:.065em;text-transform:uppercase;color:#0A2F5C;border-bottom:1px solid currentColor;padding:0 0 1px;margin-left:10px;cursor:pointer}
+.tfilter{display:none;align-items:center;gap:12px;margin:2px 0 10px;font-size:10px;font-weight:600;letter-spacing:.065em;text-transform:uppercase;color:var(--ink-soft)}
+.tfilter.on{display:flex;animation:rise .6s cubic-bezier(.16,.84,.24,1) both}
+.tfilter b{color:#0A2F5C;font-weight:700}
+.tfilter button{border:0;background:none;font:inherit;letter-spacing:.065em;text-transform:uppercase;color:var(--ink);cursor:pointer;border-bottom:1px solid currentColor;padding:0 0 1px}
+#tbl.drilled tbody tr{animation:rise .6s cubic-bezier(.16,.84,.24,1) backwards;animation-delay:var(--d,0s)}
+.cr2{grid-template-columns:1fr;align-items:stretch}
+.cr2 > div{display:flex;flex-direction:column;min-height:0}
+.cr2 .donut-wrap{flex:1;display:flex;flex-direction:column;justify-content:center}
+#chReps{flex:1;position:relative;min-height:200px}
+#chReps .hb{position:absolute;left:0;right:0;transform:translateY(-50%)}
+#chReps .hb{grid-template-columns:120px 1fr 52px;gap:14px;padding:0}
+#chReps .hb .rail{height:12px;border-radius:6px}
+#chReps .hb .l{font-size:9.5px;letter-spacing:.035em}
+.row-b .vcol .stk{width:min(54px,74%)}
+.row-b .vc,.row-b .vx{gap:8px}
+.cr3{gap:30px}
+#chStage > div{display:flex;flex-direction:column;justify-content:space-between;height:356px;padding-top:18px!important}
+#chStage .hb{padding:0}
+.cr3{grid-template-columns:1.45fr 1fr 1.25fr .85fr}
+.cr3 > div:first-child{display:flex;flex-direction:column}
+#chDonut{flex:1;display:flex;align-items:center}
+.dn2{position:relative;width:100%;max-width:520px;margin:0 auto}
+.dn2 svg{width:100%;height:auto;display:block;overflow:visible}
+.dn2 .arc{fill:none;stroke-width:15;transition:stroke-dasharray 1.1s cubic-bezier(.65,0,.35,1) var(--d,0s),stroke-width .3s}
+.dn2 .arc:hover{stroke-width:19}
+.dn2 .dn-ring{transform-box:view-box;transform-origin:240px 150px;transform:rotate(-70deg) scale(.9);opacity:0;transition:transform 1.7s cubic-bezier(.16,.84,.24,1),opacity .6s}
+.dn2.on .dn-ring{transform:none;opacity:1}
+.dn2 .mid{opacity:0;transition:opacity .8s .5s}
+.dn2.on .mid{opacity:1}
+.vcol .n{opacity:0;transform:translateY(8px);transition:opacity .6s,transform .7s cubic-bezier(.16,.84,.24,1);transition-delay:calc(var(--d,0s) + .25s)}
+.played .vcol .n{opacity:1;transform:none}
+.vc .vcol{transition:opacity .35s}
+.vc:hover .vcol{opacity:.38}
+.vc .vcol:hover{opacity:1}
+.vc .vcol:hover .stk{filter:brightness(1.1) saturate(1.1)}
+.hb{transition:opacity .35s}
+#chStage:hover .hb,#chReps:hover .hb,#chAll:hover .hb{opacity:.4}
+#chStage .hb:hover,#chReps .hb:hover,#chAll .hb:hover{opacity:1}
+.dn2 .ld{fill:none;stroke:rgba(14,15,19,.4);stroke-width:.9;stroke-linecap:round;opacity:0;transition:opacity .6s .9s}
+.dn2 .ld circle{fill:rgba(14,15,19,.55);stroke:0}
+.dn2 .lt{opacity:0;transition:opacity .6s 1.05s}
+.dn2.on .ld,.dn2.on .lt{opacity:1}
+.dn2 .lt .p{font-size:20px;font-weight:500;fill:var(--ink);font-variant-numeric:tabular-nums}
+.dn2 .lt .k{font-size:9px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;fill:var(--ink-soft)}
+.dn2 .lt .v{font-size:11px;font-weight:500;fill:var(--ink-soft);font-variant-numeric:tabular-nums}
+.dn2 .mid{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;text-align:center;pointer-events:none}
+.dn2 .mid b{font-size:32px;font-weight:300;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.dn2 .mid span{font-size:8.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-top:3px}
+#chCentre .vc,#chCentre .vx{gap:6px}
+#chCentre .vx span{font-size:8px;letter-spacing:.02em}
+.pair{display:grid;grid-template-columns:minmax(0,7fr) minmax(360px,5fr);gap:48px;min-height:0}
+.pair > .col{min-height:0}
+.row-a{height:auto;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:44px}
+.row-b{height:auto;grid-template-columns:1fr}
+.row-b .vc{height:330px}
+.row-b .donut{width:min(250px,100%);margin-top:24px}
+.row-b .donut .mid b{font-size:34px}
+.row-b .dl{margin-top:22px}
+.row-b .find input{font-size:13.5px}
+.vc{display:grid;gap:10px;align-items:end;height:250px;border-bottom:1px solid var(--ink);padding-top:18px;
+  background:repeating-linear-gradient(to top,transparent 0,transparent 43px,rgba(14,15,19,.05) 43px,rgba(14,15,19,.05) 44px)}
+.vcol{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;min-width:0;cursor:default}
+.vcol .n{font-size:11px;font-weight:600;margin-bottom:6px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.vcol .stk{width:min(28px,70%);display:flex;flex-direction:column-reverse;gap:2px;height:0;transition:height 1.3s cubic-bezier(.34,1.3,.55,1) var(--d,0s),filter .35s}
+.vcol .stk b{display:block;width:100%;border-radius:1px;min-height:2px}
+.vcol .stk b:last-child{border-radius:6px 6px 1px 1px}
+.vcol:hover .stk{filter:brightness(1.08)}
+.vx{display:grid;gap:10px;text-align:center;margin-top:8px}
+.vx span{font-size:8.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;line-height:1.35;white-space:nowrap;display:flex;flex-direction:column;align-items:center;gap:4px}
+.vx span i{width:2px;height:9px;border-radius:1px}
+.gv-ink{background:linear-gradient(0deg,#C9D8EA 0%,#3F6E9E 50%,#0A2F5C 100%)}
+.gv-un{background:linear-gradient(0deg,rgba(14,15,19,.015) 0%,rgba(14,15,19,.065) 100%)}
+.gv-fu{background:linear-gradient(0deg,rgba(14,15,19,.05) 0%,rgba(14,15,19,.22) 100%)}
+.gv-c{background:linear-gradient(0deg,color-mix(in srgb,var(--c) 32%,#fff) 0%,var(--c) 70%,color-mix(in srgb,var(--c) 85%,#000) 100%)}
+.gv-co{background:linear-gradient(0deg,color-mix(in srgb,var(--c) 5%,#fff) 0%,color-mix(in srgb,var(--c) 26%,#fff) 100%)}
+.donut{position:relative;width:min(190px,100%);aspect-ratio:1;margin:6px auto 0}
+.donut svg{width:100%;height:100%;transform:rotate(-90deg);overflow:visible}
+.donut circle{fill:none;stroke-width:13;transition:stroke-dasharray 1.5s var(--ease),stroke-dashoffset 1.5s var(--ease)}
+.donut .mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.donut .mid b{font-size:28px;font-weight:300;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.donut .mid span{font-size:8.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-top:3px}
+.dl{margin-top:14px;display:grid;grid-template-columns:1fr;gap:5px}
+.dl div{display:flex;justify-content:space-between;gap:8px;font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
+.dl div span:first-child{display:flex;align-items:center;gap:6px}
+.dl i{width:7px;height:7px;border-radius:50%}
+.dl b{font-weight:600;font-variant-numeric:tabular-nums}
+.chart-row > div{padding-top:2px;min-width:0}
+.chart-row .hb{grid-template-columns:118px 1fr 46px;gap:8px;padding:10px 0}
+.chart-row .hb .rail{height:12px;border-radius:6px}
+.chart-row .hb .rail b:first-child{border-radius:6px 0 0 6px}.chart-row .hb .rail b:last-child{border-radius:0 6px 6px 0}.chart-row .hb .rail b:only-child{border-radius:6px}
+.chart-row .hb .l{font-size:9px;letter-spacing:.04em;max-width:none}
+.chart-row .hb .v{font-size:11px}
+.chart-row .cols{height:118px}
+.chart-row .key{margin-top:8px}
+
+.g-ink{background:linear-gradient(90deg,#C9D8EA 0%,#3F6E9E 55%,#0A2F5C 100%)}
+.s3{padding:0 var(--pad);margin-top:80px}
+.s3-g{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:44px;border-top:1px solid var(--ink);padding-top:30px}
+.s3-g > .col{display:flex;flex-direction:column;min-width:0}
+#chAll{flex:1;position:relative;min-height:200px}
+#chAll .hb{position:absolute;left:0;right:0;transform:translateY(-50%);grid-template-columns:120px 1fr 46px;gap:14px;padding:0}
+#chAll .hb .rail{height:12px;border-radius:6px}
+#chAll .hb .l{font-size:9.5px;letter-spacing:.035em}
+.rec-r{margin:0 0 18px}
+.rec-h{display:flex;align-items:baseline;gap:9px;font-size:10px;font-weight:700;letter-spacing:.065em;text-transform:uppercase;margin-bottom:7px}
+.rec-h .ty{font-size:8.5px;font-weight:700;letter-spacing:.055em;padding:2px 6px 1px;border-radius:2px;background:rgba(10,47,92,.08);color:#0A2F5C}
+.rec-h .ty.unc{background:rgba(14,15,19,.07);color:var(--ink)}
+.rec-h .st{font-weight:500;letter-spacing:.045em;color:var(--ink-soft)}
+.rec-h .n{margin-left:auto;font-weight:600;letter-spacing:.045em;color:var(--ink-soft)}
+.rec-l{display:grid;grid-template-columns:52px 1fr auto;gap:10px;align-items:baseline;font-size:12px;padding:3px 0}
+.rec-l .d{font-weight:600;font-variant-numeric:tabular-nums}
+.rec-l .h{color:var(--ink-soft)}
+.rec-l .s{font-size:9px;font-weight:700;letter-spacing:.045em;text-transform:uppercase;color:#0A2F5C;display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+.rec-l .s svg{width:11px;height:11px}
+.rec-l .s.ca{color:var(--red-deep)}
+.rec-l .late{font-size:8.5px;font-weight:700;letter-spacing:.055em;text-transform:uppercase;color:var(--red-deep);margin-left:6px}
+.rec-none{font-size:11.5px;color:var(--ink-soft)}
+.t td .rd{font-size:8px;font-weight:700;letter-spacing:.055em;color:var(--ink-soft);margin-left:5px}
+.s3-b{display:grid;grid-template-columns:minmax(0,8fr) minmax(0,4fr);gap:44px;margin-top:56px}
+.s3-b .vc{height:220px}
+.gv-call{background:linear-gradient(0deg,#E6EEF7 0%,#7FA7D1 100%)}
+.g-call{background:linear-gradient(90deg,#E6EEF7,#7FA7D1)}
+.top-mk{display:inline-block;margin-left:8px;font-size:8px;font-weight:700;letter-spacing:.065em;text-transform:uppercase;color:#fff;background:#0A2F5C;padding:2px 6px 1px;border-radius:2px;vertical-align:1px}
+.bd td.rk{color:var(--ink-faint);font-weight:500;font-size:11px}
+.foot{margin:90px var(--pad) 0;padding:22px 0 110px;border-top:1px solid var(--ink);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.s2{grid-template-columns:minmax(0,1fr) 400px;gap:40px;border-top:1px solid var(--ink);padding-top:30px}
+.col{display:flex;flex-direction:column;min-height:0;min-width:0}
+.col-h{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;padding-bottom:4px;flex:none}
+.col-h h2{font-size:15px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;white-space:nowrap}
+.col-h h2[data-n]::before{content:attr(data-n);display:block;font-size:9px;font-weight:400;letter-spacing:.19em;color:var(--ink-faint);margin-bottom:7px}
+/* cross-highlight between the table and By Salesperson */
+#chReps.focus .hb{opacity:.28}
+#chReps .hb{transition:opacity .45s var(--ease)}
+#chReps.focus .hb.hot{opacity:1}
+#board.focus tbody tr{opacity:.45;transition:opacity .45s var(--ease)}
+#board tbody tr{transition:opacity .45s var(--ease),background .25s}
+#board.focus tbody tr.hot{opacity:1;background:rgba(10,47,92,.035)}
+/* arrival */
+.arrive{opacity:0;transform:translateY(16px)}
+body.ready .arrive{animation:arrive 1s var(--ease) forwards}
+body.ready .arrive.d1{animation-delay:.1s} body.ready .arrive.d2{animation-delay:.25s} body.ready .arrive.d3{animation-delay:.4s} body.ready .arrive.d4{animation-delay:.55s}
+@keyframes arrive{to{opacity:1;transform:none}}
+#clock{font-variant-numeric:tabular-nums}
+.col-h .aside{font-size:10px;font-weight:600;letter-spacing:.065em;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap}
+.eyebrow{font-size:9.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--ink-faint);font-weight:400}
+.scroll{overflow-y:auto;min-height:0;flex:1;scrollbar-width:thin;scrollbar-color:rgba(14,15,19,.2) transparent}
+.scroll::-webkit-scrollbar{width:3px}
+.scroll::-webkit-scrollbar-thumb{background:rgba(14,15,19,.2)}
+.fade{animation:fade .6s var(--ease) both}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ===== FIND ===== */
+.find{position:relative;margin:14px 0 4px;flex:none;display:block}
+.find input{width:100%;border:0;border-bottom:1px solid var(--ink);outline:none;background:transparent;font-family:var(--sans);font-size:13.5px;font-weight:400;color:var(--ink);padding:8px 24px 9px 24px;letter-spacing:.01em}
+.find input::placeholder{color:var(--ink-faint)}
+.find input::-webkit-search-cancel-button{display:none}
+.find svg{position:absolute;left:0;top:50%;transform:translateY(-50%);width:14px;height:14px}
+.find svg *{fill:none;stroke:var(--ink);stroke-width:1.3;stroke-linecap:round}
+.find .clr{position:absolute;right:0;top:50%;transform:translateY(-50%);border:0;background:none;font-size:16px;line-height:1;opacity:0;pointer-events:none;transition:opacity .3s}
+.find.has .clr{opacity:.6;pointer-events:auto}
+.find-hint{font-size:10px;font-weight:600;letter-spacing:.065em;text-transform:uppercase;color:var(--ink-soft);margin:10px 0 4px;display:flex;justify-content:space-between}
+.res{display:grid;grid-template-columns:1fr auto;gap:2px 16px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer;transition:padding-left .4s var(--ease),background .3s}
+.res:hover{padding-left:8px}
+.res .a{font-size:13px;font-weight:600;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.res .a span{font-weight:400;margin-left:8px}
+.res .v{font-size:13px;font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+.res .b{font-size:10px;font-weight:500;letter-spacing:.055em;text-transform:uppercase;color:var(--ink-soft);display:flex;gap:8px;align-items:center;min-width:0;overflow:hidden;white-space:nowrap}
+.res .b i{width:2px;height:10px;border-radius:1px;flex:none}
+.res .s{font-size:10px;font-weight:600;letter-spacing:.055em;text-transform:uppercase;text-align:right;white-space:nowrap}
+.s-open{color:var(--red-deep)} .s-mute{color:var(--ink-soft);font-weight:500}
+.tag-ap,.tag-ca{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.055em;text-transform:uppercase;padding:4px 8px 3px;border-radius:2px;white-space:nowrap;line-height:1.2}
+.tag-ap{background:#0A2F5C;color:#fff}
+.ok{display:inline-flex;align-items:center;gap:5px;color:#0A2F5C;font-weight:700}
+.ok svg{width:13px;height:13px;flex:none}
+.age{display:flex;flex-direction:column;line-height:1.25}
+.age b{font-weight:500;font-size:12px}
+.age > span{font-size:9.5px;font-weight:600;letter-spacing:.04em;color:var(--ink-soft)}
+.age.old b,.age.old > span{color:var(--red-deep)}
+.age .risk{color:#fff}
+.risk{display:inline-block;margin-left:6px;font-size:8.5px;font-weight:700;letter-spacing:.045em;text-transform:uppercase;color:#fff;background:var(--red-deep);padding:2px 5px 1px;border-radius:2px;vertical-align:1px}
+.tag-ca{background:var(--red-deep);color:#fff}
+.e-final{margin-top:14px;padding:10px 14px;border-radius:2px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.e-final.ap{background:linear-gradient(100deg,#0A2F5C 0%,#1A4C7E 70%,#3F6E9E 100%);color:#fff}
+.e-final.ca{background:linear-gradient(100deg,#7E0E14 0%,#9E1219 60%,#C2343A 100%);color:#fff}
+.e-final .t{font-size:15px;font-weight:300;letter-spacing:.02em}
+.e-final .t b{font-weight:600;letter-spacing:.08em;text-transform:uppercase;font-size:10.5px;display:block;margin-bottom:2px}
+.e-final .m{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;text-align:right;opacity:.85}
+.stp.void{opacity:.32}
+.stp.fin .c{background:#0A2F5C;border-color:#0A2F5C;color:#fff;box-shadow:0 0 0 4px rgba(10,47,92,.15)}
+.stp.fin.canx .c{background:var(--red-deep);border-color:var(--red-deep);box-shadow:0 0 0 4px rgba(218,33,40,.15)}
+.x.s-cx{color:var(--red-deep);font-weight:700}
+.x.s-ap{color:#0A2F5C;font-weight:700}
+
+/* estimate, opened in place */
+.est{padding-top:12px;padding-bottom:20px}
+.est .card{animation:cardIn 1s cubic-bezier(.16,.84,.24,1) backwards;position:relative;overflow:hidden}
+@keyframes cardIn{0%{opacity:0;transform:translateY(26px) scale(.965);filter:blur(10px);clip-path:inset(0 0 78% 0 round 14px)}55%{filter:blur(0)}100%{opacity:1;transform:none;filter:none;clip-path:inset(0 0 0 0 round 14px)}}
+.est .card::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(105deg,transparent 30%,rgba(127,167,209,.16) 48%,rgba(10,47,92,.06) 52%,transparent 70%);transform:translateX(-130%);animation:sheen 1.6s .55s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes sheen{to{transform:translateX(130%)}}
+.e-name .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em;margin-bottom:-.1em}
+.e-name .w > span{display:inline-block;animation:wordUp .9s cubic-bezier(.16,.84,.24,1) backwards;animation-delay:var(--d,0s)}
+@keyframes wordUp{from{transform:translateY(112%);opacity:.2}to{transform:none;opacity:1}}
+.rise{animation:rise .75s cubic-bezier(.16,.84,.24,1) backwards;animation-delay:var(--d,0s)}
+@keyframes rise{from{opacity:0;transform:translateY(14px);filter:blur(3px)}to{opacity:1;transform:none;filter:none}}
+.est .stp{animation:pop .6s cubic-bezier(.34,1.45,.5,1) backwards;animation-delay:var(--d,0s)}
+@keyframes pop{from{opacity:0;transform:translateY(8px) scale(.6)}to{opacity:1;transform:none}}
+.res.fade{animation:resIn .55s cubic-bezier(.16,.84,.24,1) both}
+@keyframes resIn{from{opacity:0;transform:translateX(-14px);filter:blur(4px)}to{opacity:1;transform:none;filter:none}}
+.card{padding:18px 20px 14px;background:linear-gradient(180deg,#FAFBFD 0%,#FFFFFF 70%);border-radius:14px;box-shadow:0 1px 0 rgba(14,15,19,.04),0 18px 40px -26px rgba(10,47,92,.28)}
+.c-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.c-num{font-size:12px;font-weight:600;color:#0A2F5C;letter-spacing:.04em;margin-top:4px;font-variant-numeric:tabular-nums}
+.c-big{display:grid;grid-template-columns:1fr auto;gap:18px;margin-top:24px;align-items:end}
+.c-k{font-size:8px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft)}
+.c-v .one{white-space:nowrap}
+.c-v .one small{font-size:11px;opacity:.8}
+.c-v{font-size:12.5px;font-weight:400;color:#0A2F5C;margin-top:3px;line-height:1.3;overflow-wrap:anywhere}
+.c-price{font-size:20px;font-weight:300;color:#0A2F5C;line-height:1.1;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.c-fu{text-align:right}
+.c-fu b{display:block;font-size:30px;font-weight:300;color:#0A2F5C;line-height:1;font-variant-numeric:tabular-nums}
+.c-fu b small{font-size:15px;color:var(--ink-soft)}
+.c-fu span{display:block;font-size:9px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft);margin-top:6px}
+.c-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px 16px;margin-top:16px;padding-top:14px;border-top:1px solid rgba(14,15,19,.06)}
+.c-id{min-width:0}
+.c-r{text-align:right;flex:none}
+.c-fu2{font-size:9px;font-weight:600;letter-spacing:.055em;text-transform:uppercase;color:var(--ink-soft);margin-top:5px;white-space:nowrap}
+.c-fu2 b{font-size:12px;color:#0A2F5C;letter-spacing:0}
+.c-link{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:22px;padding-bottom:4px;font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--ink);text-decoration:none;transition:letter-spacing .4s var(--ease)}
+.c-link:hover{letter-spacing:.3em}
+.c-link svg{width:18px;height:18px;flex:none;transition:transform .45s var(--ease)}
+.c-link:hover svg{transform:translateX(5px)}
+.c-sec{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin:20px 0 12px;display:flex;justify-content:space-between}
+.c-sec span:last-child{color:var(--ink-soft);font-weight:600;letter-spacing:.055em}
+.back{border:0;background:none;font-size:9.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;display:inline-flex;align-items:center;gap:8px;margin-bottom:16px;opacity:.75}
+.back:hover{opacity:1}
+.e-num{font-size:10.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+.e-num i{width:2px;height:13px;border-radius:1px}
+.e-name{font-size:18px;font-weight:400;line-height:1.2;letter-spacing:.01em}
+.e-desc{font-size:11px;font-weight:500;letter-spacing:.055em;text-transform:uppercase;color:var(--ink-soft);margin-top:6px}
+.e-facts{display:grid;grid-template-columns:repeat(4,1fr);margin-top:20px;border-top:1px solid var(--ink)}
+.e-facts > div{padding:10px 10px 10px 0;border-bottom:1px solid var(--line);min-width:0}
+.e-facts .k{font-size:9px;font-weight:600;letter-spacing:.07em;text-transform:uppercase}
+.e-facts .v{font-size:14px;font-weight:400;margin-top:3px;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.e-link{display:inline-block;margin-top:14px;font-size:9.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--ink);padding-bottom:2px}
+.e-h{display:flex;justify-content:space-between;font-size:9.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin:26px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--rule)}
+.e-h span:last-child{color:var(--ink-soft);letter-spacing:.055em}
+.steps{display:grid;position:relative;column-gap:6px}
+.steps .ln{position:absolute;top:14px;height:1px;background:var(--rule)}
+.steps .lf{position:absolute;top:14px;height:1.5px;background:#0A2F5C;width:0;transition:width 1.1s var(--ease) .15s}
+.stp{text-align:center;position:relative}
+.stp .c{width:29px;height:29px;border-radius:50%;margin:0 auto;display:grid;place-items:center;font-size:11px;font-weight:500;background:var(--paper);border:1px solid var(--rule)}
+.stp.done .c{background:#0A2F5C;color:#fff;border-color:#0A2F5C}
+.stp.today .c{border:1.5px solid var(--red);color:var(--red-deep);font-weight:700}
+.stp.today.done .c{background:#0A2F5C;color:#fff;border-color:#0A2F5C;box-shadow:0 0 0 4px rgba(218,33,40,.15)}
+.stp .d{font-size:11.5px;font-weight:500;margin-top:7px;font-variant-numeric:tabular-nums}
+.stp .o{font-size:8.5px;font-weight:600;letter-spacing:.065em;text-transform:uppercase;color:var(--ink-soft);margin-top:1px}
+.stp .x{font-size:8.5px;font-weight:700;letter-spacing:.045em;text-transform:uppercase;margin-top:4px}
+.notes-wrap{padding-left:14px}
+.est .notes li{display:block;padding:0 0 16px;border-bottom:0}
+.est .notes li::before{top:5px}
+.est .notes .when{display:flex;gap:8px;font-size:9px;letter-spacing:.055em;padding-top:0;line-height:1.4}
+.est .notes .when small{display:inline;font-size:9px}
+.est .notes .what{font-size:12.5px;line-height:1.5;margin-top:3px;color:var(--ink)}
+.notes{list-style:none}
+.notes li{position:relative;display:grid;grid-template-columns:86px 1fr;gap:14px;padding:11px 0 12px;border-bottom:1px solid var(--rule-soft)}
+.notes li::before{content:'';position:absolute;left:-14px;top:17px;width:5px;height:5px;border-radius:50%;background:var(--ink)}
+.notes li:first-child::before{background:var(--red)}
+.notes .when{font-size:10px;font-weight:600;letter-spacing:.045em;text-transform:uppercase;line-height:1.5;padding-top:2px}
+.notes .when small{display:block;font-size:9px;font-weight:500;color:var(--ink-soft);letter-spacing:.055em}
+.notes .what{font-size:13.5px;font-weight:400;line-height:1.55;white-space:pre-wrap;word-break:break-word}
+.none{font-size:11.5px;font-weight:500;letter-spacing:.04em;color:var(--ink-soft);padding:14px 0}
+
+/* ===== THE DAY ===== */
+.day-top{display:grid;grid-template-columns:auto 1fr;gap:34px;align-items:center;padding:20px 0 18px;border-bottom:1px solid var(--line);flex:none}
+.ring{position:relative;width:146px;height:146px}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:4}
+.ring .tr{stroke:rgba(14,15,19,.07)}
+.ring .ar{stroke:var(--ink);stroke-linecap:round;transition:stroke-dashoffset 1.4s var(--ease)}
+.ring .mid{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring .mid b{font-size:44px;font-weight:200;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+.ring .mid b small{font-size:16px;font-weight:300;margin-left:2px}
+.ring .mid > span{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-top:5px}
+.day-head .big{font-size:28px;font-weight:300;line-height:1.15;margin-top:6px}
+.day-head .big b{font-weight:500}
+.day-head .say{font-size:12.5px;font-weight:400;line-height:1.6;margin-top:8px;max-width:60ch}
+.day-head .say b{font-weight:600}
+.day-head .say .r{color:var(--red-deep);font-weight:600}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);flex:none}
+.kpi{padding:14px 18px 14px 18px;border-bottom:1px solid var(--line);border-left:1px solid var(--line);min-width:0}
+.kpi:nth-child(3n+1){padding-left:0;border-left:0}
+.kpi .k{font-size:9.5px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;white-space:nowrap}
+.kpi .v{font-size:28px;font-weight:300;line-height:1.1;margin-top:6px;font-variant-numeric:tabular-nums;letter-spacing:-.01em;white-space:nowrap}
+.kpi .v small{font-size:15px;color:var(--ink-soft)}
+.kpi .v.red{color:var(--red-deep)}
+.kpi .n{font-size:11px;font-weight:500;margin-top:3px;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kpi .bar{height:2px;background:rgba(14,15,19,.08);margin-top:9px;position:relative}
+.kpi .bar b{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--ink);transition:width 1.3s var(--ease)}
+.kpi .bar b.red{background:var(--red-deep)}
+.strip{display:grid;grid-template-columns:repeat(6,1fr);gap:24px;flex:none;padding:6px 0 4px}
+.fig{padding:12px 0 8px;min-width:0}
+
+.fig .k{font-size:9px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;white-space:nowrap}
+.fig .v{font-size:30px;font-weight:300;line-height:1.1;margin-top:5px;font-variant-numeric:tabular-nums;letter-spacing:-.01em;white-space:nowrap}
+.fig .v small{font-size:15px;margin-left:1px}
+.fig .v.red{color:var(--ink)}
+.fig .n{font-size:10.5px;font-weight:500;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.say-line{font-size:12.5px;font-weight:400;line-height:1.6;padding:8px 0 0;flex:none}
+.say-line b{font-weight:600} .say-line .r{font-weight:600}
+.bd-wrap{margin-top:12px}
+table.bd{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed}
+.bd th{font-size:9.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;text-align:right;padding:13px 8px 12px;color:#fff;background:#0E0F13;white-space:nowrap;position:sticky;top:0;z-index:2}
+.bd th:first-child{border-radius:2px 0 0 0;padding-left:14px}
+.bd th:last-child{border-radius:0 2px 0 0;padding-right:14px}
+.bd td:first-child{padding-left:14px}
+.bd td:last-child{padding-right:14px}
+.bd th:first-child,.bd td:first-child{text-align:left}
+.bd td{font-size:12.5px;font-weight:400;text-align:right;padding:11px 8px 10px;border-bottom:1px solid rgba(14,15,19,.06);white-space:nowrap;font-variant-numeric:tabular-nums;overflow:hidden;text-overflow:ellipsis}
+.bd tbody tr{cursor:pointer;transition:background .25s}
+.bd tbody tr:hover{background:rgba(14,15,19,.025)}
+.bd tbody tr.sel{background:rgba(14,15,19,.055)}
+.bd td.nm{font-weight:500;white-space:normal;line-height:1.3;text-transform:uppercase;letter-spacing:.04em;font-size:11.5px}
+.cmp{display:flex;align-items:center;gap:8px}
+.cmp .cb{flex:1;min-width:40px;height:5px;border-radius:2px;background:rgba(10,47,92,.08);position:relative;overflow:hidden}
+.cmp .cb b{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:2px;background:linear-gradient(90deg,#C9D8EA,#3F6E9E 55%,#0A2F5C);transition:width 1.3s cubic-bezier(.22,1,.36,1) var(--d,0s)}
+.cmp span{font-size:11.5px;font-weight:600;min-width:32px;text-align:right}
+.bd td.un{color:var(--ink);font-weight:600}
+.bd td.z{color:var(--ink-faint)}
+.bd td.m{font-weight:500}
+.bd tfoot td{font-weight:600;font-size:13.5px;color:#0A2F5C;border-top:1.5px solid #0E0F13;border-bottom:0;padding-top:15px;padding-bottom:14px;background:transparent}
+.bd tfoot td:first-child{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.bd tfoot .cmp span{color:#0A2F5C}
+.bd tfoot td.un{color:#0A2F5C}
+.reps-h{display:grid;grid-template-columns:minmax(120px,1.2fr) 2fr 52px 86px;gap:14px;font-size:9px;font-weight:700;letter-spacing:.065em;text-transform:uppercase;padding:14px 0 8px;border-bottom:1px solid var(--line);flex:none}
+.reps-h .r{text-align:right}
+.rep{display:grid;grid-template-columns:minmax(120px,1.2fr) 2fr 52px 86px;gap:14px;align-items:center;padding:8px 0;border-bottom:1px solid var(--rule-soft);cursor:pointer;transition:background .3s}
+.rep:hover{background:rgba(14,15,19,.022)}
+.rep.sel{background:rgba(218,33,40,.045)}
+.rep .nm{font-size:12px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rep .tk{display:flex;gap:2px;height:8px}
+.rep .tk i{flex:1;max-width:22px;background:rgba(14,15,19,.09);border-radius:1px;animation:tick .5s var(--ease) both}
+.rep .tk i.d{background:var(--ink)}
+@keyframes tick{from{opacity:0;transform:scaleY(.2)}to{opacity:1;transform:none}}
+.rep .p{font-size:12px;font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+.rep .u{font-size:11.5px;font-weight:600;text-align:right;color:var(--red-deep);font-variant-numeric:tabular-nums}
+.rep .u.z{color:var(--ink-faint);font-weight:400}
+
+/* ===== TABLE ===== */
+.ctrl{display:flex;justify-content:space-between;align-items:center;gap:14px;margin:14px 0 8px;flex:none}
+.seg{display:flex;border:1px solid var(--rule);border-radius:2px;overflow:hidden}
+.seg button{font-size:9px;letter-spacing:.09em;text-transform:uppercase;font-weight:400;border:0;border-left:1px solid var(--rule);background:transparent;padding:7px 14px;transition:color .4s,background .4s}
+.seg button:first-child{border-left:0}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.stg{display:flex;gap:4px 20px;flex-wrap:wrap;margin:4px 0 14px;flex:none}
+.stg button{border:0;background:none;padding:5px 0 4px;font-size:9.5px;font-weight:500;letter-spacing:.055em;text-transform:uppercase;color:var(--ink-soft);position:relative;white-space:nowrap;cursor:pointer;transition:color .3s}
+.stg button sup{font-size:8.5px;font-weight:600;letter-spacing:.04em;margin-left:5px;vertical-align:1px;color:var(--ink-faint);font-variant-numeric:tabular-nums}
+.stg button::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1.5px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
+.stg button:hover{color:var(--ink)}
+.stg button[aria-pressed="true"]{color:var(--ink);font-weight:600}
+.stg button[aria-pressed="true"] sup{color:var(--ink-soft)}
+.stg button[aria-pressed="true"]::after{transform:scaleX(1)}
+.stg button.risk-s[aria-pressed="false"]{color:var(--red-deep)}
+.count{font-size:10px;font-weight:600;letter-spacing:.065em;text-transform:uppercase;color:var(--ink-soft)}
+table.t{width:100%;border-collapse:separate;border-spacing:0;table-layout:fixed}
+.t td .cd{display:inline-block;width:2px;height:11px;border-radius:1px;margin-right:8px;vertical-align:-1px}
+.t th{position:sticky;top:0;background:#0E0F13;color:#fff;font-size:9.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;text-align:left;padding:13px 9px 12px;white-space:nowrap;cursor:pointer;user-select:none;z-index:2}
+.t th:first-child{border-radius:2px 0 0 0;padding-left:14px}
+.t th:last-child{border-radius:0 2px 0 0;padding-right:14px}
+.t td:first-child{padding-left:14px}
+.t td:last-child{padding-right:14px}
+.t th.r,.t td.r{text-align:right}
+.t th .ar{opacity:0;margin-left:4px;color:rgba(255,255,255,.7)}
+.t th.r .ar{position:absolute;margin-left:3px}
+.t th.on .ar{opacity:1}
+.t td{font-size:11.5px;font-weight:400;padding:10px 9px 9px;border-bottom:1px solid rgba(14,15,19,.06);white-space:nowrap;font-variant-numeric:tabular-nums;overflow:hidden;text-overflow:ellipsis}
+.t tbody tr{cursor:pointer;transition:background .25s}
+.t tbody tr:hover{background:rgba(14,15,19,.035)}
+.t tbody tr.sel{background:rgba(14,15,19,.06)}
+.t tbody tr.sel td:first-child{box-shadow:inset 3px 0 0 #0A2F5C}
+.t tbody tr.sel.flash td{animation:selFlash .9s ease-out}
+@keyframes selFlash{from{background:rgba(14,15,19,.12)}to{background:transparent}}
+.t tbody tr.r-ap,.t tbody tr.r-ap.sel{background:#0A2F5C}
+.t tbody tr.r-ap:hover{background:#082649}
+.t tbody tr.r-ca,.t tbody tr.r-ca.sel{background:#9E1219}
+.t tbody tr.r-ca:hover{background:#860F15}
+.t tbody tr.r-ap td,.t tbody tr.r-ca td{color:#fff;border-bottom-color:rgba(255,255,255,.14)}
+.t tbody tr.r-ap td *,.t tbody tr.r-ca td *{color:#fff!important}
+.t tbody tr.r-ap td .cd,.t tbody tr.r-ca td .cd{background:#fff!important}
+.t tbody tr.r-ap .tag-ap,.t tbody tr.r-ca .tag-ca{background:transparent;border:1px solid rgba(255,255,255,.8);padding:3px 7px 2px}
+.t tbody tr.r-ap .dots i,.t tbody tr.r-ca .dots i{border-color:rgba(255,255,255,.6);box-shadow:none}
+.t tbody tr.r-ap .dots i.d,.t tbody tr.r-ca .dots i.d{background:#fff;border-color:#fff}
+.t tbody tr.r-ap.sel,.t tbody tr.r-ca.sel{box-shadow:inset 4px 0 0 #fff}
+.t td.num,.t td.val{font-weight:600}
+.t td .ctr{display:inline-flex;align-items:center;gap:7px;font-size:10px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-soft)}
+.t td .ctr i{width:6px;height:6px;border-radius:1px}
+.t td .st{font-size:9.5px;font-weight:600;letter-spacing:.055em;text-transform:uppercase}
+.dots{display:inline-flex;gap:3px}
+.dots i{width:6px;height:6px;border-radius:50%;border:1px solid rgba(14,15,19,.35)}
+.dots i.d{background:var(--ink);border-color:var(--ink)}
+.dots i.t{border-color:var(--red);box-shadow:0 0 0 2px rgba(218,33,40,.14)}
+.dots i.t.d{background:var(--ink);border-color:var(--ink)}
+
+/* ===== CHARTS ===== */
+.charts{display:flex;flex-direction:column;gap:30px;padding-top:20px}
+.ch-h{display:flex;justify-content:space-between;align-items:baseline;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+.ch-h span:last-child{font-weight:500;letter-spacing:.045em;color:var(--ink-soft)}
+.hb{display:grid;grid-template-columns:136px 1fr 84px;gap:12px;align-items:center;padding:5px 0}
+.hb .l{font-size:10.5px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:7px}
+.hb .l i{width:2px;height:11px;border-radius:1px;flex:none}
+.hb .rail{display:flex;gap:2px;height:7px}
+.hb .rail{background:rgba(14,15,19,.035);border-radius:5px;height:9px;gap:0;overflow:hidden}
+.hb .rail b{display:block;height:100%;width:0;transition:width 1.3s cubic-bezier(.22,1,.36,1) var(--d,0s)}
+.hb .rail b:first-child{border-radius:5px 0 0 5px}
+.hb .rail b:last-child{border-radius:0 5px 5px 0}
+.hb .rail b:only-child{border-radius:5px}
+.hb .rail b + b{margin-left:2px}
+.g-un{background:linear-gradient(90deg,rgba(14,15,19,.015),rgba(14,15,19,.065))}
+.g-fu{background:linear-gradient(90deg,rgba(14,15,19,.07),rgba(14,15,19,.26))}
+.g-c{background:linear-gradient(90deg,color-mix(in srgb,var(--c) 100%,#000 12%),var(--c) 40%,color-mix(in srgb,var(--c) 45%,#fff))}
+.g-co{background:linear-gradient(90deg,color-mix(in srgb,var(--c) 26%,#fff),color-mix(in srgb,var(--c) 8%,#fff))}
+.g-done{background:linear-gradient(180deg,#2B2E38 0%,#0E0F13 100%)}
+.g-open{background:linear-gradient(180deg,rgba(14,15,19,.16) 0%,rgba(14,15,19,.04) 100%)}
+.hb .v{font-size:11.5px;font-weight:600;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.key{display:flex;gap:8px 18px;flex-wrap:wrap;margin-top:10px;font-size:9px;font-weight:600;letter-spacing:.065em;text-transform:uppercase;color:var(--ink-soft)}
+.key span{display:flex;align-items:center;gap:6px;white-space:nowrap}
+.key i{width:18px;height:6px;border-radius:3px}
+.cols{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;align-items:end;height:120px;border-bottom:1px solid var(--ink);padding-top:16px}
+.cl{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
+.cl .n{font-size:11px;font-weight:600;margin-bottom:5px;font-variant-numeric:tabular-nums}
+.cl .stk{width:min(30px,60%);display:flex;flex-direction:column-reverse;gap:2px;height:0;transition:height 1.4s var(--ease)}
+.cl .stk b{display:block;width:100%;border-radius:1px}
+.cl .stk b:last-child{border-radius:5px 5px 1px 1px}
+.cols{background:repeating-linear-gradient(to top,transparent 0,transparent 29px,rgba(14,15,19,.05) 29px,rgba(14,15,19,.05) 30px)}
+.cx{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;text-align:center;margin-top:7px}
+.cx span{font-size:8.5px;font-weight:600;letter-spacing:.055em;text-transform:uppercase;line-height:1.35}
+
+/* hover card */
+.g-tip{position:fixed;z-index:95;pointer-events:none;background:var(--ink);color:var(--paper);padding:11px 14px;border-radius:2px;box-shadow:0 10px 34px rgba(14,15,19,.26);font-size:11.5px;font-weight:500;line-height:1.6;letter-spacing:.03em;max-width:320px;opacity:0;transform:translateY(4px);transition:opacity .2s var(--ease),transform .2s var(--ease)}
+.g-tip.on{opacity:1;transform:none}
+.g-tip .h{font-size:13px;font-weight:700;display:block;margin-bottom:3px}
+.g-tip .k{display:flex;justify-content:space-between;gap:24px;font-size:10.5px;letter-spacing:.05em;text-transform:uppercase}
+.g-tip .k span:last-child{font-weight:600}
+.err-line{display:none;border-left:2px solid var(--red);padding:6px 12px;margin:10px 0 0;font-size:11px;font-weight:500}
+.err-line.show{display:block}
+
+/* ===== SMALLER SCREENS ===== */
+@media (max-width:1180px){
+  .screen{height:auto}
+  .s1,.s2{grid-template-columns:1fr;gap:44px}
+  .row-a,.row-b{height:auto}
+  .pair{grid-template-columns:1fr;gap:44px}
+  .cr3{grid-template-columns:1fr 1fr}
+  .s2{grid-template-columns:1fr}
+  .s3-g,.s3-b,.y-g{grid-template-columns:1fr}
+  .strip{grid-template-columns:repeat(3,1fr)}
+
+  .scroll{overflow:visible;flex:none}
+  .t-wrap{overflow-x:auto}
+  table.t{min-width:680px}
+  #pane{max-height:none}
+}
+@media (max-width:760px){
+  :root{--pad:18px}
+  .tb-left,#updated{display:none}
+  .tb-l1{grid-template-columns:1fr auto}
+  .tb-one{overflow-x:auto}
+  .nav button{padding:11px 10px}
+  .nav button::after{left:10px;right:10px}
+  .find input{font-size:14px}
+  .cr2,.cr3{grid-template-columns:1fr}
+  .col-h{flex-wrap:wrap;row-gap:4px}
+  .col-h .aside{white-space:normal}
+  .e-facts{grid-template-columns:1fr 1fr}
+  .stp .o{display:none}
+  .day-top{grid-template-columns:auto 1fr;gap:18px}
+  .ring{width:104px;height:104px}
+  .ring .mid b{font-size:30px}
+  .day-head .big{font-size:20px}
+  .kpis{grid-template-columns:1fr 1fr}
+  .strip{grid-template-columns:repeat(3,1fr);gap:14px}
+  .fig .v{font-size:22px}
+  .bd-wrap{overflow-x:auto}
+  table.bd{min-width:620px}
+  .kpi,.kpi:nth-child(3n+1){padding:12px 12px 12px 14px;border-left:1px solid var(--line)}
+  .kpi:nth-child(odd){padding-left:0;border-left:0}
+  .kpi .v{font-size:22px}
+  .reps-h,.rep{grid-template-columns:minmax(90px,1fr) 1fr 40px 64px;gap:10px}
+  .hb{grid-template-columns:100px 1fr 72px}
+  .notes li{grid-template-columns:64px 1fr;gap:10px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="boot" id="boot" aria-hidden="true">
+  <div class="boot-ring">
+    <svg viewBox="0 0 240 240"><circle class="track" cx="120" cy="120" r="112"/><circle class="arc" id="bootArc" cx="120" cy="120" r="112" stroke-dasharray="703.7" stroke-dashoffset="703.7"/></svg>
+    <div class="boot-fig"><b id="bootN">0</b><i>%</i></div>
+  </div>
+</div>
+
+<header class="topbar" id="topbar">
+  <div class="tb-one">
+    <div class="tb-brand" id="home" title="Clear all filters and refresh" role="button" tabindex="0"><img class="logo" alt="FASTSIGNS" src="data:image/png;base64,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"><span>Sales Ops</span></div>
+    <span class="tb-sep"></span>
+    <div class="nav views" id="views"><button data-view="today" aria-pressed="true">Today</button><button data-view="yesterday" aria-pressed="false">Yesterday</button></div>
+    <span class="tb-sep"></span>
+    <div class="nav" id="districts">
+      <button data-lens="both" aria-pressed="true">Both Districts</button>
+      <button data-lens="valley" aria-pressed="false">Valley</button>
+      <button data-lens="southbay" aria-pressed="false">South Bay</button>
+    </div>
+    <div class="tb-fill"></div>
+    <div class="nav" id="centres"></div>
+    <span class="tb-sep"></span>
+    <div class="tb-right"><span class="live-dot" id="liveDot"></span><span id="updated">Loading</span><button class="tb-refresh" id="refresh">Refresh</button></div>
+  </div>
+</header>
+
+<!-- SCREEN ONE: the day · four charts · the sheet's table and find -->
+<section class="screen s1" id="s1">
+  <div class="top arrive d1">
+    <div class="col-h"><h2 data-n="01">The Day</h2><span class="aside"><span id="dateLine">Today</span> · <span id="clock"></span> in LA</span></div>
+    <div class="err-line" id="errLine"></div>
+    <div class="strip" id="strip"></div>
+    <div class="say-line" id="sayLine"></div>
+  </div>
+
+  <div class="pair row-a arrive d2">
+    <div class="col">
+      <div class="col-h"><h2 data-n="02">Today by Salesperson</h2><span class="aside">Same count as the sheet · click a name to focus</span></div>
+      <div class="scroll bd-wrap"><table class="bd" id="board"></table></div>
+    </div>
+    <div class="chart-row cr2" id="charts">
+      <div><div class="ch-h"><span>By Salesperson</span><span>Follow-ups</span></div><div id="chReps"></div>
+        <div class="key"><span><i class="g-ink"></i>Done</span><span><i class="g-un"></i>Unattended</span></div></div>
+    </div>
+  </div>
+
+  <div class="pair row-b arrive d3">
+    <div class="chart-row cr3" id="charts2">
+      <div><div class="ch-h"><span>Today's Money</span><span>Due today</span></div><div class="donut-wrap" id="chDonut"></div></div>
+      <div><div class="ch-h"><span>By Centre</span><span>Follow-ups</span></div><div id="chCentre"></div>
+        <div class="key"><span><i style="background:linear-gradient(90deg,rgba(14,15,19,.25),#4A4C55)"></i>Solid done</span><span><i style="background:rgba(14,15,19,.1)"></i>Pale open</span></div></div>
+      <div><div class="ch-h"><span>Money by Stage</span><span>Due today</span></div><div id="chStage"></div>
+        <div class="key"><span><i class="g-ink"></i>Followed up</span><span><i class="g-un"></i>Unattended</span></div></div>
+      <div><div class="ch-h"><span>How Old Today's Estimates Are</span><span>Value</span></div><div id="chSteps"></div>
+        <div class="key"><span><i class="g-ink"></i>Followed up</span><span><i class="g-un"></i>Unattended</span></div></div>
+    </div>
+  </div>
+
+  <div class="row-c arrive d3">
+    <div class="chart-row" id="charts3">
+      <div><div class="ch-h"><span>Whole Team · Today</span><span>Follow-ups done of scheduled</span></div><div id="chTeam"></div>
+        <div class="key"><span><i class="g-ink"></i>Done</span><span><i class="g-un" style="background:linear-gradient(90deg,rgba(14,15,19,.03),rgba(14,15,19,.1))"></i>Unattended</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREEN TWO: every estimate due today · find an estimate -->
+<section class="screen s2" id="s2">
+  <div class="col">
+    <div class="col-h"><h2 data-n="03">Every Estimate Due Today</h2><span class="aside">Click a row to open it beside</span></div>
+    <div class="ctrl"><div class="seg" id="tabs"><button data-t="all" aria-pressed="true">All</button><button data-t="open" aria-pressed="false">Still Open</button><button data-t="done" aria-pressed="false">Done</button><button data-t="ap" aria-pressed="false">Approved</button><button data-t="ca" aria-pressed="false">Canceled</button></div><span class="count" id="tCount"></span></div>
+    <div class="tfilter" id="tFilter"></div>
+    <div class="stg" id="stg"></div>
+    <div class="scroll t-wrap"><table class="t" id="tbl"></table></div>
+  </div>
+  <div class="col">
+    <div class="col-h"><h2 data-n="04">Find an Estimate</h2><span class="aside">Searches the whole sheet</span></div>
+    <label class="find" id="findBox">
+      <svg viewBox="0 0 20 20"><circle cx="8.5" cy="8.5" r="6"/><path d="M13 13l5 5"/></svg>
+      <input id="q" type="search" placeholder="Estimate, customer or salesperson" autocomplete="off">
+      <button class="clr" id="qx" aria-label="Clear">×</button>
+    </label>
+    <div class="scroll" id="pane"></div>
+  </div>
+</section>
+
+<!-- ALL TIME: follow-up completion by salesperson -->
+<section class="s3" id="s3">
+  <div class="s3-g">
+    <div class="col">
+      <div class="col-h"><h2 data-n="05">Follow-Up Completion · All Time</h2><span class="aside" id="allAside">Whole sheet · best rate first</span></div>
+      <div class="bd-wrap"><table class="bd" id="allTbl"></table></div>
+    </div>
+    <div class="col">
+      <div class="ch-h"><span>Completion Rate</span><span>Done of due</span></div>
+      <div id="chAll"></div>
+      <div class="key"><span><i class="g-ink"></i>Done</span><span><i class="g-un"></i>Missed</span></div>
+    </div>
+  </div>
+  <div class="s3-b" id="s3b">
+    <div><div class="ch-h"><span>Recorded per Week</span><span>Follow-ups done · last 10 weeks</span></div><div id="chWeeks"></div>
+      <div class="key"><span><i class="g-ink"></i>Emails</span><span><i class="g-call"></i>Calls</span></div></div>
+    <div><div class="ch-h"><span>Estimates by Round</span><span>Estimates</span></div><div id="chRounds"></div>
+      <div class="key"><span><i class="g-ink"></i>New</span><span><i class="g-un"></i>Unclosed</span></div></div>
+  </div>
+</section>
+
+<!-- LAST TWO WEEKS: done vs not done, each workday -->
+<section class="s5" id="s5">
+  <div class="s5-in">
+    <div class="col-h"><h2 data-n="09">Follow-Ups · Last Two Weeks</h2><span class="aside" id="trAside"></span></div>
+    <div class="ctrl"><div class="seg" id="trMode"><button data-m="rate" aria-pressed="true">Completion rate</button><button data-m="miss" aria-pressed="false">Missed</button></div></div>
+    <div id="chTrend"></div>
+    <div class="key" id="trKey"></div>
+  </div>
+</section>
+
+<!-- YESTERDAY: what was due, what got done, what slipped -->
+<section id="s4">
+  <div class="col-h"><h2 data-n="06" id="yTitle">Yesterday</h2><span class="aside">What was due · what got done · what slipped</span></div>
+  <div class="strip" id="yStrip"></div>
+  <div class="say-line" id="ySay"></div>
+  <div class="y-g">
+    <div>
+      <div class="col-h"><h2 data-n="07">Yesterday by Salesperson</h2><span class="aside">Click a name to see only theirs</span></div>
+      <div class="bd-wrap"><table class="bd" id="yBoard"></table></div>
+    </div>
+    <div>
+      <div class="ch-h"><span>On Time · Late · Missed</span><span>Follow-ups</span></div>
+      <div id="chY"></div>
+      <div class="key"><span><i class="g-ink"></i>On time</span><span><i class="g-call"></i>Late</span><span><i class="g-un"></i>Missed</span></div>
+    </div>
+  </div>
+  <div class="y-list">
+    <div class="col-h"><h2 data-n="08">Every Follow-Up That Slipped</h2><span class="aside" id="yCount"></span></div>
+    <div class="t-wrap" style="margin-top:14px"><table class="t" id="yTbl"></table></div>
+  </div>
+</section>
+
+<footer class="foot"><span>FASTSIGNS · Sales Ops</span><span id="footUpd"></span></footer>
+
+<div class="g-tip" id="tip"></div>
+
+<script>
+/* ============================================================
+   1. CONFIG
+   ============================================================ */
+const API_URL = 'https://script.google.com/macros/s/AKfycbzcf51ushBTbFbVGb_8FUJSQ5gYAF4NnSNNj-Vc1FlD9feuGrwfwNSDs7kIhvEsC7ivyA/exec?key=fstoday-2441e996b2d8&format=json';
+const SAVE_KEY = 'tfu_last_data';
+const CENTERS = [
+  {name:'Tarzana',       facility:'valley',   color:'#97005E'},
+  {name:'Thousand Oaks', facility:'valley',   color:'#52247F'},
+  {name:'Long Beach',    facility:'southbay', color:'#004990'},
+  {name:'Santa Ana',     facility:'southbay', color:'#0096D6'},
+  {name:'Torrance',      facility:'southbay', color:'#0066B3'}
+];
+const CBY = Object.fromEntries(CENTERS.map(c => [c.name.toLowerCase(), c]));
+const STEPS = ['First Email','First Call','Second Email','Second Call','Third Email','Third Call'];
+const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+let DATA = null;
+const state = { view:'today', lens:'both', rep:null, tab:'all', stage:'all', q:'', open:null, sort:{k:'def', d:-1} };
+
+/* ============================================================
+   2. HELPERS
+   ============================================================ */
+const $ = s => document.querySelector(s);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pct = (a, b) => b ? Math.round(a / b * 100) : 0;
+const money = n => '$' + Math.round(n || 0).toLocaleString('en-US');
+const money2 = n => '$' + (n || 0).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+const kmoney = n => n >= 1e6 ? '$' + (n/1e6).toFixed(2) + 'M' : n >= 1e4 ? '$' + Math.round(n/1e3) + 'K' : n >= 1e3 ? '$' + (n/1e3).toFixed(1) + 'K' : '$' + Math.round(n || 0);
+const fmtDate = iso => { if (!iso) return ''; const p = iso.split('-'); return MON[+p[1]-1] + ' ' + (+p[2]); };
+const cap = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
+const centreOf = e => CBY[(e.center || '').toLowerCase()] || null;
+const colorOf = e => (centreOf(e) || {color:'#9A9BA3'}).color;
+const easeOut = t => 1 - Math.pow(1 - t, 4);
+const counters = {};
+function countTo(el, to){
+  if (!el) return;
+  const from = counters[el.id] || 0; counters[el.id] = to; const t0 = performance.now();
+  (function step(now){ const k = Math.min(1, (now - t0) / 1000); el.textContent = Math.round(from + (to - from) * easeOut(k)); if (k < 1) requestAnimationFrame(step); })(t0);
+}
+/* ---------- chart motion: play when seen, stagger, count up ---------- */
+const MOTION = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+const seen = new WeakSet();
+const io = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(en => {
+  if (!en.isIntersecting) return; io.unobserve(en.target); seen.add(en.target); const f = en.target._play; en.target._play = null; if (f) f();
+}), {threshold:.2}) : null;
+function whenVisible(el, fn){
+  if (!el) return;
+  if (!io || seen.has(el)) { requestAnimationFrame(() => requestAnimationFrame(fn)); return; }
+  el._play = () => requestAnimationFrame(() => requestAnimationFrame(fn)); io.observe(el);
+}
+function countUp(el, delay){
+  const txt = el.textContent, m = txt.match(/^(\D*?)(\d[\d,]*(?:\.\d+)?)(\D*)$/);
+  if (!m || !MOTION) return;
+  const to = parseFloat(m[2].replace(/,/g, '')), dec = (m[2].split('.')[1] || '').length, comma = m[2].includes(',');
+  const fmt = v => { let s = v.toFixed(dec); if (comma) s = Number(s).toLocaleString('en-US', {minimumFractionDigits:dec, maximumFractionDigits:dec}); return m[1] + s + m[3]; };
+  el.textContent = fmt(0);
+  const t0 = performance.now() + delay;
+  (function step(now){ const k = Math.max(0, Math.min(1, (now - t0) / 1100)); el.textContent = fmt(to * (1 - Math.pow(1 - k, 3))); if (k < 1 && el.isConnected) requestAnimationFrame(step); else if (k >= 1) el.textContent = txt; })(performance.now());
+}
+const delayOf = el => (parseFloat(getComputedStyle(el).getPropertyValue('--d')) || 0) * 1000;
+const grow = root => {
+  if (!root) return;
+  root.classList.remove('played');
+  /* charts in a row arrive one by one: chart k starts k × 0.38s later */
+  const cd = el => { const c = root.classList.contains('chart-row') ? [...root.children].indexOf(el.closest('.chart-row > div')) : -1; return c > 0 ? c * 0.38 : 0; };
+  if (root.classList.contains('chart-row')) [...root.children].forEach((c, k) => c.style.setProperty('--cd', (k * 0.38).toFixed(2) + 's'));
+  root.querySelectorAll('.vc').forEach(vc => [...vc.querySelectorAll('.vcol')].forEach((c, i) => c.style.setProperty('--d', (0.2 + cd(c) + i * 0.07).toFixed(2) + 's')));
+  root.querySelectorAll('.hb').forEach(h => h.style.setProperty('--d', (0.2 + cd(h) + Math.min([...h.parentNode.children].indexOf(h), 16) * 0.05).toFixed(2) + 's'));
+  root.querySelectorAll('tbody tr').forEach((tr, i) => tr.style.setProperty('--d', (Math.min(i, 16) * 0.04).toFixed(2) + 's'));
+  whenVisible(root, () => {
+    root.querySelectorAll('[data-w]').forEach(x => x.style.width = x.dataset.w);
+    root.querySelectorAll('[data-h]').forEach(x => x.style.height = x.dataset.h);
+    root.classList.add('played');
+    root.querySelectorAll('.vcol .n').forEach(n => countUp(n, delayOf(n.closest('.vcol')) + 150));
+    root.querySelectorAll('.hb .v').forEach(v => { if (!v.textContent.includes('/')) countUp(v, delayOf(v.closest('.hb')) + 100); });
+    root.querySelectorAll('.cmp > span:last-child').forEach(v => countUp(v, delayOf(v.closest('tr') || v) + 100));
+  });
+};
+const tipRow = (k, v) => `<span class='k'><span>${k}</span><span>${v}</span></span>`;
+
+/* ============================================================
+   3. SHAPING
+   ============================================================ */
+function inLens(e){
+  if (state.lens === 'both') return true;
+  const c = centreOf(e);
+  if (state.lens === 'valley' || state.lens === 'southbay') return !!c && c.facility === state.lens;
+  return (e.center || '').toLowerCase() === state.lens.toLowerCase();
+}
+const todaySlots = e => e.slots.filter(s => s.date === DATA.today);
+/* The sheet's own rules (updateTodayDashboard v3) */
+const st_ = s => String(s.status || '').trim().toLowerCase();
+const isFinal = e => e.slots.some(s => st_(s) === 'approved' || st_(s) === 'closed');
+function sheetCount(e){
+  const c = {sched:0, done:0, unatt:0, emS:0, emD:0, caS:0, caD:0, approved:0, closed:0, remaining:0};
+  const fin = isFinal(e);
+  for (const s of e.slots){
+    if (s.date !== DATA.today) continue;
+    const t = String(s.outreach || '').toLowerCase(), st = st_(s);
+    if (st === 'approved'){ c.approved += e.price; break; }
+    if (st === 'closed'){ c.closed += e.price; break; }
+    if (!fin){
+      c.sched++;
+      if (t.includes('email')) c.emS++;
+      if (t.includes('call')) c.caS++;
+      if (st === 'follow-up'){ c.done++; if (t.includes('email')) c.emD++; if (t.includes('call')) c.caD++; }
+      else c.unatt++;
+      c.remaining += e.price;
+    }
+  }
+  return c;
+}
+const isOpen = e => !!e.today && sheetCount(e).unatt > 0;
+const isNotSent = e => /not sent/i.test(e.priority || '');
+const stageOf = e => e.priority || 'No stage';
+/* due today = has a schedule dated today; an approved / canceled estimate
+   only counts if it was approved / canceled today (a final dated today) */
+const finalToday = e => e.slots.some(s => s.date === DATA.today && (st_(s) === 'approved' || st_(s) === 'closed'));
+const dueToday = () => DATA.estimates.filter(e => e.today && inLens(e) && (!isFinal(e) || finalToday(e)));
+const focused = l => state.rep ? l.filter(e => e.rep === state.rep) : l;
+function agg(list){
+  const t = {sched:0, done:0, unatt:0, emS:0, emD:0, caS:0, caD:0, approved:0, closed:0, remaining:0, est:0, unatt$:0, unattN:0, notSent:0, notSentN:0};
+  list.forEach(e => {
+    const c = sheetCount(e);
+    for (const k in c) t[k] += c[k];
+    t.est++;
+    if (c.unatt){ t.unatt$ += e.price; t.unattN++; }
+    if (isNotSent(e) && !isFinal(e)){ t.notSent += e.price; t.notSentN++; }
+  });
+  return t;
+}
+/* arrow-right1.svg (supplied), stroke follows the text colour */
+const ARROW = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12H6.5M20 12L14 6M20 12L14 18M20 12H9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const CHECK = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3.5 12.5L9 18L16.9 9.7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M18.8 7.7L20.5 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const okLabel = st => /^follow-?up$/i.test(String(st || '').trim()) ? 'Done' : cap(st);
+function daysSince(iso){ if (!iso || !DATA) return null; return Math.round((new Date(DATA.today + 'T12:00:00Z') - new Date(iso + 'T12:00:00Z')) / 864e5); }
+function ageInfo(e){
+  const d = daysSince(e.created); if (d == null) return null;
+  const risk = isNotSent(e) && d > 5 && !finalOf(e);
+  return {d, old:d > 7 || risk, risk};
+}
+function finalOf(e){
+  const s = e.slots.find(x => st_(x) === 'approved' || st_(x) === 'closed');
+  return s ? {ap:st_(s) === 'approved', slot:s} : null;
+}
+function stepState(e){
+  const fin = finalOf(e);
+  if (fin) return {cls:'', tag:true, short:`<span class="${fin.ap ? 'tag-ap' : 'tag-ca'}" title="${fin.ap ? 'Approved' : 'Canceled'} ${fmtDate(fin.slot.date)}">${fin.ap ? 'Approved' : 'Canceled'}</span>`, html:`<span class="${fin.ap ? 'tag-ap' : 'tag-ca'}">${fin.ap ? 'Approved' : 'Canceled'} · ${fmtDate(fin.slot.date)}</span>`, txt:(fin.ap ? 'Approved' : 'Canceled') + ' · ' + fmtDate(fin.slot.date)};
+  const s = todaySlots(e)[0];
+  if (s) return s.done ? {cls:'', html:`<span class="st ok">${String(s.n).padStart(2,'0')} · ${CHECK}${esc(okLabel(s.status))}</span>`, txt:`${String(s.n).padStart(2,'0')} · ${okLabel(s.status)}`} : {cls:'s-open', txt:`${String(s.n).padStart(2,'0')} · ${cap(s.outreach) || 'Step'} due`};
+  const nx = e.slots.find(x => !x.done && x.date >= DATA.today);
+  return nx ? {cls:'s-mute', txt:'Next ' + fmtDate(nx.date)} : {cls:'s-mute', txt:'No step left'};
+}
+
+/* ============================================================
+   4. SCREEN ONE, LEFT — find an estimate
+   ============================================================ */
+function renderPane(){
+  const pane = $('#pane');
+  $('#findBox').classList.toggle('has', !!state.q);
+  if (state.open){ renderEstimate(pane); return; }
+  const q = state.q.trim().toLowerCase();
+  let list, title;
+  if (q){
+    list = DATA.estimates.filter(e => inLens(e) && (e.num + ' ' + e.customer + ' ' + e.contact + ' ' + e.rep + ' ' + e.desc).toLowerCase().includes(q)).sort((a, b) => b.price - a.price);
+    title = `${list.length} match${list.length === 1 ? '' : 'es'}`;
+  } else {
+    list = focused(dueToday()).filter(isOpen).sort((a, b) => b.price - a.price);
+    title = 'Unattended today · biggest first';
+  }
+  const shown = list.slice(0, 60);
+  pane.innerHTML = `<div class="find-hint"><span>${title}</span><span>${shown.length < list.length ? 'Top ' + shown.length : ''}</span></div>` +
+    (shown.length ? shown.map((e, i) => { const st = stepState(e); return `<div class="res fade" data-num="${esc(e.num)}" style="animation-delay:${Math.min(i, 14) * 0.025}s">
+      <div class="a">${esc(e.num)}<span>${esc(e.customer || '—')}</span></div><div class="v">${money(e.price)}</div>
+      <div class="b"><i style="background:${colorOf(e)}"></i>${esc(e.rep)} · ${esc(e.center || '—')}${e.priority ? ' · ' + esc(e.priority) : ''}</div><div class="s ${st.cls}">${st.html || esc(st.txt)}</div></div>`; }).join('')
+      : `<div class="none">${q ? 'Nothing on the sheet matches that.' : 'Every estimate due today has been touched.'}</div>`);
+}
+/* the follow-up record (column AO): every round, every follow-up done */
+function recordHtml(e){
+  if (!DATA || !('version' in DATA) || DATA.version < 'v1.8') return '';
+  const r = e.rec;
+  const head = `<div class="c-sec"><span>Record · All rounds</span><span>${r ? `${r.total} done · ${r.emails} ${r.emails === 1 ? 'Email' : 'Emails'} · ${r.calls} ${r.calls === 1 ? 'Call' : 'Calls'}` : ''}</span></div>`;
+  if (!r) return head + '<div class="rec-none">Nothing recorded yet.</div>';
+  let ri = 0;
+  return head + r.rounds.map(R => `<div class="rec-r"><div class="rec-h"><span>Round ${R.n}</span>${R.type ? `<span class="ty ${/unclosed/i.test(R.type) ? 'unc' : ''}">${esc(R.type)}</span>` : ''}${R.start ? `<span class="st">Started ${fmtDate(R.start)}</span>` : ''}<span class="n">${R.done.length} done</span></div>
+    ${R.done.length ? R.done.map(([on, n, how, st, due]) => { const late = daysBetween(due, on); const cx = /closed/i.test(st), ap = /approved/i.test(st);
+      return `<div class="rec-l rise" style="--d:${(0.95 + Math.min(ri++, 14) * 0.04).toFixed(2)}s"><span class="d">${fmtDate(on)}</span><span class="h">Schedule ${n} · ${esc(how)}${late > 0 ? `<span class="late">Late ${late}d</span>` : ''}</span><span class="s ${cx ? 'ca' : ''}">${cx ? 'Canceled' : ap ? 'Approved' : CHECK + 'Done'}</span></div>`; }).join('')
+      : '<div class="rec-none">None done in this round yet.</div>'}</div>`).join('');
+}
+const daysBetween = (a, b) => Math.round((Date.parse(b + 'T12:00:00Z') - Date.parse(a + 'T12:00:00Z')) / 864e5);
+
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+function renderEstimate(pane){
+  const e = DATA.estimates.find(x => x.num === state.open); if (!e){ state.open = null; renderPane(); return; }
+  const c = centreOf(e), sl = e.slots.slice(0, 6), N = sl.length || 1, L = 50 / N;
+  const fin = finalOf(e), fi = fin ? sl.indexOf(fin.slot) : -1;
+  const last = fin ? fi : sl.reduce((m, s, i) => s.done ? i : m, -1);
+  const fill = N > 1 && last > 0 ? last / (N - 1) * (100 - 2 * L) : 0;
+  const after = (s, i) => fin && i > fi;
+  const x = (s, i) => after(s, i) ? '<div class="x s-mute">Not needed</div>'
+    : (fin && i === fi) ? `<div class="x ${fin.ap ? 's-ap' : 's-cx'}">${fin.ap ? 'Approved' : 'Canceled'}</div>`
+    : s.done ? `<div class="x ok" style="justify-content:center">${CHECK}${esc(okLabel(s.status))}</div>` : s.date === DATA.today ? '<div class="x s-open">Due today</div>' : s.date < DATA.today ? '<div class="x s-open">Missed</div>' : '<div class="x s-mute">Ahead</div>';
+  const fdate = fin ? (() => { const p = fin.slot.date.split('-'); return MON[+p[1]-1] + ' ' + (+p[2]) + ', ' + p[0]; })() : '';
+  const banner = fin ? `<div class="e-final ${fin.ap ? 'ap' : 'ca'}"><div class="t"><b>${fin.ap ? 'Approved' : 'Canceled'}</b>${fdate}</div><div class="m">At step ${fin.slot.n}<br>${esc(cap(fin.slot.outreach) || '—')}</div></div>` : '';
+  pane.innerHTML = `<div class="est">
+    <button class="back" id="back">← ${state.q ? 'Back to results' : 'Back to the list'}</button>
+    <div class="card">
+      <div class="c-top">
+        <div class="c-id">
+          <div class="e-name">${(e.customer || 'No customer name').split(/\s+/).map((w, i) => `<span class="w"><span style="--d:${(0.18 + i * 0.07).toFixed(2)}s">${esc(w)}</span></span>`).join(' ')}</div>
+          <div class="c-num rise" style="--d:.42s">${esc(e.num)}</div>
+        </div>
+        <div class="c-r rise" style="--d:.5s"><div class="c-price">${money2(e.price)}</div><div class="c-fu2"><b>${e.doneCount}</b> / ${sl.length} follow-ups</div></div>
+      </div>
+      ${banner}
+      <div class="c-grid rise" style="--d:.62s">
+        <div><div class="c-k">Salesperson</div><div class="c-v">${esc(e.rep)}</div></div>
+        <div><div class="c-k">Centre</div><div class="c-v"><span style="display:inline-block;width:2px;height:11px;border-radius:1px;margin-right:7px;vertical-align:-1px;background:${c ? c.color : '#9A9BA3'}"></span>${esc(e.center || '—')}</div></div>
+        <div><div class="c-k">Stage</div><div class="c-v">${esc(e.priority || '—')}</div></div>
+        <div><div class="c-k">Type</div><div class="c-v">${esc(e.type || '—')}</div></div>
+        <div><div class="c-k">Contact</div><div class="c-v">${esc(e.contact || '—')}</div></div>
+        <div><div class="c-k">Created</div><div class="c-v">${(() => { const a = ageInfo(e); return a ? `<span class="one" style="${a.old ? 'color:var(--red-deep)' : ''}">${fmtDate(e.created)}${e.created.slice(0, 4) !== String(new Date().getFullYear()) ? ', ' + e.created.slice(0, 4) : ''} <small>· ${a.d === 0 ? 'Today' : a.d + (a.d === 1 ? ' day' : ' days') + ' ago'}</small></span>${a.risk ? '<span class="risk">At risk</span>' : ''}` : '—'; })()}</div></div>
+        <div style="grid-column:1 / -1"><div class="c-k">Description</div><div class="c-v">${esc(e.desc || '—')}</div></div>
+      </div>
+      ${e.link ? `<a class="c-link" href="${esc(e.link)}" target="_blank" rel="noopener">Open in CoreBridge${ARROW}</a>` : ''}
+    </div>
+    <div class="c-sec"><span>Follow-ups</span><span>${fin ? (fin.ap ? 'Approved' : 'Canceled') + ' at step ' + fin.slot.n : e.doneCount + ' of ' + sl.length + ' done'}</span></div>
+    ${sl.length ? `<div class="steps" style="grid-template-columns:repeat(${N},1fr)"><div class="ln" style="left:${L}%;right:${L}%"></div><div class="lf" id="lf" style="left:${L}%"></div>
+      ${sl.map((s, i) => `<div style="--d:${(0.75 + i * 0.07).toFixed(2)}s" class="stp ${s.done ? 'done' : ''} ${!fin && s.date === DATA.today ? 'today' : ''} ${after(s, i) ? 'void' : ''} ${fin && i === fi ? 'fin' + (fin.ap ? '' : ' canx') : ''}"><div class="c">${s.n}</div><div class="d">${fmtDate(s.date)}</div><div class="o">${esc(cap(s.outreach) || '—')}</div>${x(s, i)}</div>`).join('')}</div>`
+      : '<div class="none">No follow-ups scheduled.</div>'}
+    ${recordHtml(e)}
+    <div class="c-sec"><span>Notes</span><span>${e.notes.length ? e.notes.length + (e.notes.length === 1 ? ' note' : ' notes') + ' · newest first' : ''}</span></div>
+    ${e.notes.length ? `<div class="notes-wrap"><ul class="notes">${e.notes.map(n => `<li><div class="when">${n.date ? fmtDate(n.date) + ', ' + n.date.slice(0, 4) : 'No date'}${n.by ? `<small>· ${esc(n.by)}</small>` : ''}</div><div class="what">${esc(n.text)}</div></li>`).join('')}</ul></div>` : '<div class="none">No notes on this estimate yet.</div>'}
+  </div>`;
+  $('#back').onclick = () => { state.open = null; renderPane(); markRows(); };
+  setTimeout(() => { const f = $('#lf'); if (f) f.style.width = fill + '%'; }, REDUCED ? 0 : 900);
+  /* the price counts up as the card opens */
+  const pe = pane.querySelector('.c-price');
+  if (pe && !REDUCED){
+    const t0 = performance.now() + 450, to = e.price;
+    pe.textContent = money2(0);
+    (function step(now){ const k = Math.max(0, Math.min(1, (now - t0) / 1100)); pe.textContent = money2(to * (1 - Math.pow(1 - k, 4))); if (k < 1 && pe.isConnected) requestAnimationFrame(step); })(performance.now());
+  }
+}
+function openEstimate(num, scrollUp){
+  state.open = num; renderPane(); markRows();
+  $('#pane').scrollTop = 0;
+  if (scrollUp) window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* ============================================================
+   5. SCREEN ONE, RIGHT — the day
+   ============================================================ */
+function renderDay(list){
+  const f = focused(list), t = agg(f), p = pct(t.done, t.sched);
+  const fig = (k, v, n, red, tab) => `<div class="fig ${tab ? 'go' : ''}" ${tab ? `data-go="${tab}" title="Show these estimates"` : ''}><div class="k">${k}</div><div class="v ${red ? 'red' : ''}">${v}</div><div class="n">${n}</div></div>`;
+  $('#strip').innerHTML =
+    fig('Done', `<span id="fPct">0</span><small>%</small>`, `${t.done} of ${t.sched} follow-ups`, false, 'done') +
+    fig('Unattended', t.unatt, `${money(t.unatt$)} waiting`, t.unatt > 0, 'open') +
+    fig('Remaining', kmoney(t.remaining), money(t.remaining)) +
+    fig('Approved today', kmoney(t.approved), money(t.approved), false, 'ap') +
+    fig('Canceled today', kmoney(t.closed), money(t.closed), false, 'ca') +
+    fig('Not sent', kmoney(t.notSent), `${t.notSentN} estimate${t.notSentN === 1 ? '' : 's'} due today`);
+  counters.fPct = 0; countTo($('#fPct'), p);
+  const lensName = state.lens === 'both' ? 'The whole team' : state.lens === 'valley' ? 'Valley' : state.lens === 'southbay' ? 'South Bay' : state.lens;
+  $('#sayLine').innerHTML = t.sched
+    ? `<b>${state.rep || lensName}</b> has ${t.sched} follow-ups due today and has done ${t.done}. ${t.unatt ? `<span class="r">${t.unatt} still unattended on ${t.unattN} estimate${t.unattN === 1 ? '' : 's'}.</span>` : 'Nothing is left.'} Emails ${t.emD}/${t.emS}, calls ${t.caD}/${t.caS}.`
+    : 'Nothing is due a follow-up today.';
+  if (state.rep) $('#sayLine').innerHTML += `<button class="show-all">Show everyone</button>`;
+
+  /* the sheet's table */
+  const by = {};
+  list.forEach(e => { const r = by[e.rep] || (by[e.rep] = {rep:e.rep, sched:0, done:0, unatt:0, emS:0, emD:0, caS:0, caD:0, approved:0, closed:0, remaining:0}); const c = sheetCount(e); for (const k in c) r[k] += c[k]; });
+  const reps = Object.values(by).sort((a, b) => b.sched - a.sched || a.rep.localeCompare(b.rep));
+  const T = reps.reduce((a, r) => { for (const k in r) if (k !== 'rep') a[k] = (a[k] || 0) + r[k]; return a; }, {});
+  const z = v => v ? '' : 'z';
+  const go = (tab, v) => v ? ` data-go="${tab}" title="Show these estimates"` : '';
+  const row = r => `<td class="r ${z(r.sched)}"${go('all', r.sched)}>${r.sched}</td><td class="r ${z(r.done)}"${go('done', r.done)}>${r.done}</td><td class="r ${r.unatt ? 'un' : 'z'}"${go('open', r.unatt)}>${r.unatt}</td>
+    <td><div class="cmp"><span class="cb"><b data-w="${pct(r.done, r.sched)}%"></b></span><span>${pct(r.done, r.sched)}%</span></div></td>
+    <td class="r">${r.emD}/${r.emS}</td><td class="r">${r.caD}/${r.caS}</td>
+    <td class="r m ${z(r.approved)}"${go('ap', r.approved)}>${money(r.approved)}</td><td class="r m ${z(r.closed)}"${go('ca', r.closed)}>${money(r.closed)}</td><td class="r m">${money(r.remaining)}</td>`;
+  $('#board').innerHTML = `<colgroup><col style="width:19.5%"><col style="width:8.5%"><col style="width:6%"><col style="width:10%"><col style="width:10.5%"><col style="width:7.5%"><col style="width:7.5%"><col style="width:9.5%"><col style="width:9.5%"><col style="width:11.5%"></colgroup>
+    <thead><tr><th>Salesperson</th><th>Scheduled</th><th>Done</th><th>Unattended</th><th style="text-align:left">Completion</th><th>Emails</th><th>Calls</th><th>Approved</th><th>Canceled</th><th>Remaining</th></tr></thead>
+    <tbody>${reps.map(r => `<tr data-rep="${esc(r.rep)}" class="${state.rep === r.rep ? 'sel' : ''}"><td class="nm">${esc(r.rep)}</td>${row(r)}</tr>`).join('')}</tbody>
+    ${reps.length ? `<tfoot><tr><td>Total</td>${row(T)}</tr></tfoot>` : '<tbody><tr><td colspan="10" class="z" style="text-align:left">No follow-ups due today.</td></tr></tbody>'}`;
+  grow($('#board'));
+}
+
+/* ============================================================
+   6. SCREEN TWO, LEFT — every estimate due today
+   ============================================================ */
+const COLS = [
+  {k:'num', l:'Estimate', w:122, p:9}, {k:'cust', l:'Customer'}, {k:'rep', l:'Salesperson', w:112, p:13}, {k:'stage', l:'Stage', w:104, p:10},
+  {k:'created', l:'Created', w:112, p:9}, {k:'step', l:'Today', w:106, p:10}, {k:'track', l:'Track', w:76, p:8}, {k:'tot', l:'Total', r:1, w:64, p:6}, {k:'price', l:'Value', r:1, w:78, p:8}
+];
+function sortVal(e, k){
+  switch (k){
+    case 'num': return e.num; case 'cust': return e.customer; case 'rep': return e.rep;
+    case 'stage': return e.priority || ''; case 'created': { const a = daysSince(e.created); return a == null ? -1 : a; } case 'step': return (todaySlots(e)[0] || {n:9}).n; case 'track': return e.doneCount; case 'tot': return e.rec ? e.rec.total : -1;
+    case 'notes': return e.notes.length; case 'price': return e.price;
+    default: return (isOpen(e) ? 1e12 : 0) + e.price;
+  }
+}
+function renderTable(list){
+  let l = focused(list);
+  if (state.tab === 'open') l = l.filter(isOpen);
+  if (state.tab === 'done') l = l.filter(e => !isOpen(e));
+  if (state.tab === 'ap') l = l.filter(e => { const z = finalOf(e); return z && z.ap; });
+  if (state.tab === 'ca') l = l.filter(e => { const z = finalOf(e); return z && !z.ap; });
+  /* stage filter row — every stage in the list, biggest first */
+  const sc = {}; l.forEach(e => { const k = stageOf(e); sc[k] = (sc[k] || 0) + 1; });
+  if (state.stage !== 'all' && !(state.stage in sc)) sc[state.stage] = 0;
+  const stages = Object.keys(sc).sort((a, b) => sc[b] - sc[a] || a.localeCompare(b));
+  $('#stg').innerHTML = `<button data-s="all" aria-pressed="${state.stage === 'all'}">All Stages<sup>${l.length}</sup></button>` +
+    stages.map(k => `<button data-s="${esc(k)}" class="${/not sent/i.test(k) ? 'risk-s' : ''}" aria-pressed="${state.stage === k}">${esc(k)}<sup>${sc[k]}</sup></button>`).join('');
+  if (state.stage !== 'all') l = l.filter(e => stageOf(e) === state.stage);
+  const {k, d} = state.sort;
+  l = l.slice().sort((a, b) => { const A = sortVal(a, k), B = sortVal(b, k); return (A > B ? 1 : A < B ? -1 : 0) * d; });
+  const TABN = {all:'All', open:'Still open', done:'Done', ap:'Approved', ca:'Canceled'};
+  $('#tFilter').classList.toggle('on', !!state.rep || state.tab !== 'all');
+  $('#tFilter').innerHTML = `<span>Showing</span><b>${esc(state.rep || 'Everyone')}</b><span>·</span><b>${TABN[state.tab]}</b>${state.stage !== 'all' ? `<span>·</span><b>${esc(state.stage)}</b>` : ''}<button id="tClear">Clear</button>`;
+  $('#tCount').textContent = `${l.length} estimate${l.length === 1 ? '' : 's'} · ${money(l.reduce((s, e) => s + e.price, 0))}`;
+  $('#tbl').innerHTML = `<colgroup>${COLS.map(c => `<col ${c.w ? `data-w="${c.w}" data-p="${c.p}" style="width:${c.w}px"` : ''}>`).join('')}</colgroup><thead><tr>${COLS.map(c => `<th class="${c.r ? 'r' : ''} ${k === c.k ? 'on' : ''}" data-sort="${c.k}">${c.l}<span class="ar">${k === c.k && d > 0 ? '↑' : '↓'}</span></th>`).join('')}</tr></thead>
+    <tbody>${l.length ? l.map(e => { const st = stepState(e); const fz = finalOf(e); return `<tr data-num="${esc(e.num)}" class="${state.open === e.num ? 'sel' : ''} ${fz ? (fz.ap ? 'r-ap' : 'r-ca') : ''}">
+      <td class="num" title="${esc(e.center)}"><span class="cd" style="background:${colorOf(e)}"></span>${esc(e.num)}</td><td title="${esc(e.customer)}">${esc(e.customer || '—')}</td><td>${esc(e.rep)}</td>
+      <td title="${esc(e.priority)}">${esc(e.priority || '—')}</td><td>${(() => { const a = ageInfo(e); return a ? `<div class="age ${a.old ? 'old' : ''}"><b>${fmtDate(e.created)}${a.risk ? '<span class="risk">At risk</span>' : ''}</b><span>${a.d === 0 ? 'Today' : a.d + (a.d === 1 ? ' day' : ' days') + ' ago'}</span></div>` : '<span class="s-mute">—</span>'; })()}</td><td>${st.short || st.html || `<span class="st ${st.cls}">${esc(st.txt)}</span>`}</td>
+      <td><span class="dots">${e.slots.slice(0, 6).map(s => `<i class="${s.done ? 'd' : ''} ${s.date === DATA.today ? 't' : ''}"></i>`).join('')}</span></td>
+      <td class="r" title="${e.rec ? e.rec.total + ' done across ' + e.rec.rounds.length + (e.rec.rounds.length === 1 ? ' round' : ' rounds') : 'No record yet'}">${e.rec ? e.rec.total + (e.rec.rounds.length > 1 ? `<span class="rd">R${e.rec.rounds[0].n}</span>` : '') : '<span class="s-mute">—</span>'}</td>
+      <td class="r val">${money(e.price)}</td></tr>`; }).join('')
+      : '<tr><td colspan="8" class="none" style="text-align:center">Nothing here.</td></tr>'}</tbody>`;
+  sizeCols($('#tbl'));
+}
+/* each sized column = at least its px, or its % of the table on wide screens; Customer takes the rest */
+function sizeCols(t){
+  if (!t) return; const W = (t.parentElement || t).clientWidth; if (!W) return;
+  t.querySelectorAll('col[data-w]').forEach(c => { c.style.width = Math.max(+c.dataset.w, +c.dataset.p / 100 * W) + 'px'; });
+}
+function markRows(){ document.querySelectorAll('#tbl tr[data-num]').forEach(r => r.classList.toggle('sel', r.dataset.num === state.open)); }
+
+/* ============================================================
+   7. SCREEN TWO, RIGHT — where it stands
+   ============================================================ */
+const SHORT = {'active pipeline':'Active<br>Pipeline','in motion':'In<br>Motion','site visit':'Site<br>Visit','high priority':'High<br>Priority','presentation phase':'Present-<br>ation','estimate not sent':'Not<br>Sent','on hold':'On<br>Hold','future opportunity':'Future','no stage':'No<br>Stage'};
+const shortStage = k => SHORT[String(k).toLowerCase()] || esc(String(k).split(' ').slice(0, 2).join('<br>'));
+function vchart(el, cols){
+  if (!cols.length){ el.innerHTML = '<div class="none">Nothing due today.</div>'; return; }
+  const max = Math.max(1, ...cols.map(c => c.segs.reduce((a, x) => a + x.v, 0)));
+  const g = `grid-template-columns:repeat(${cols.length},1fr)`;
+  el.innerHTML = `<div class="vc" style="${g}">${cols.map(c => {
+      const tot = c.segs.reduce((a, x) => a + x.v, 0);
+      return `<div class="vcol" ${c.key ? `data-k="${c.key}"` : ''} data-tip="${c.tip}"><span class="n">${c.top}</span><span class="stk" data-h="${tot / max * 100}%">${c.segs.filter(x => x.v).map(x => `<b class="${x.cls}" style="flex:${x.v};${x.style || ''}"></b>`).join('')}</span></div>`;
+    }).join('')}</div><div class="vx" style="${g}">${cols.map(c => `<span>${c.dot ? `<i style="background:${c.dot}"></i>` : ''}${c.label}</span>`).join('')}</div>`;
+}
+function renderCharts(list){
+  const f = focused(list);
+
+  /* donut — where today's money is */
+  const m = {fu:0, un:0, ap:0, ca:0};
+  f.forEach(e => { const c = sheetCount(e); if (c.approved) m.ap += e.price; else if (c.closed) m.ca += e.price; else if (c.unatt) m.un += e.price; else if (c.sched) m.fu += e.price; });
+  const parts = [
+    {k:'Followed up', v:m.fu, c:'#0A2F5C'},
+    {k:'Unattended', v:m.un, c:'#ECEDF0'},
+    {k:'Approved', v:m.ap, c:'#7FA7D1'},
+    {k:'Canceled', v:m.ca, c:'#C9444A'}
+  ];
+  const tot = parts.reduce((a, x) => a + x.v, 0);
+  const W = 480, H = 300, cx = W / 2, cy = H / 2, R = 104, C = 2 * Math.PI * R, GAP = tot ? 3 : 0;
+  let off = 0;
+  const arcs = parts.map(x => { const len = tot ? x.v / tot * C : 0; const a = {x, len, draw:Math.max(0, len - GAP), off}; off += len; return a; });
+  /* callouts: a dot on the slice, a short line out, then across to the label */
+  const lab = arcs.filter(a => a.x.v > 0).map(a => {
+    const ang = (a.off + a.len / 2) / C * 2 * Math.PI - Math.PI / 2;
+    const cos = Math.cos(ang), sin = Math.sin(ang), right = cos >= 0;
+    const y0 = cy + sin * (R + 2);
+    return {a, right, cos, sin, x0:cx + cos * (R + 2), y0, y:Math.max(26, Math.min(H - 30, y0))};
+  });
+  [true, false].forEach(side => {          /* keep labels on one side from overlapping */
+    const L = lab.filter(l => l.right === side).sort((p, q) => p.y - q.y), GAPY = 42;
+    for (let i = 1; i < L.length; i++) if (L[i].y - L[i - 1].y < GAPY) L[i].y = L[i - 1].y + GAPY;
+    const over = L.length ? L[L.length - 1].y - (H - 26) : 0;
+    if (over > 0) L.forEach(l => l.y -= over);
+    for (let i = L.length - 2; i >= 0; i--) if (L[i + 1].y - L[i].y < GAPY) L[i].y = L[i + 1].y - GAPY;
+  });
+  const callouts = lab.map(l => {
+    const xe = l.right ? cx + R + 40 : cx - R - 40, tx = l.right ? xe + 5 : xe - 5, anc = l.right ? 'start' : 'end';
+    const yb = Math.abs(l.y - l.y0) < 1 ? l.y0 : l.y;
+    /* leave the ring sideways, then ease into the label's level — no climbing */
+    const dirx = l.right ? 1 : -1, c1x = l.x0 + dirx * 26 + l.cos * 6, c1y = l.y0 + l.sin * 6, c2x = xe - dirx * 30, f1 = v => v.toFixed(1);
+    return `<g class="ld"><path d="M${f1(l.x0)},${f1(l.y0)} C${f1(c1x)},${f1(c1y)} ${f1(c2x)},${f1(yb)} ${f1(xe)},${f1(yb)}"/><circle cx="${f1(l.x0)}" cy="${f1(l.y0)}" r="2"/></g>
+      <g class="lt" text-anchor="${anc}"><text x="${tx}" y="${f1(yb + 1)}"><tspan class="p">${pct(l.a.x.v, tot)}%</tspan><tspan class="v" dx="7">${kmoney(l.a.x.v)}</tspan></text><text class="k" x="${tx}" y="${f1(yb + 14)}">${l.a.x.k}</text></g>`;
+  }).join('');
+  $('#chDonut').innerHTML = `<div class="dn2"><svg viewBox="0 0 ${W} ${H}"><g class="dn-ring"><g transform="rotate(-90 ${cx} ${cy})"><circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="rgba(14,15,19,.05)" stroke-width="15"/>
+      ${arcs.map(a => `<circle class="arc" cx="${cx}" cy="${cy}" r="${R}" stroke="${a.x.c}" stroke-dasharray="0 ${C}" stroke-dashoffset="${-a.off}" data-da="${a.draw} ${C - a.draw}"
+        data-tip="<span class='h'>${a.x.k}</span>${tipRow('Value', money(a.x.v))}${tipRow('Share', pct(a.x.v, tot) + '%')}" style="cursor:default"/>`).join('')}</g></g>${callouts}</svg>
+      <div class="mid"><b>${kmoney(tot)}</b><span>${f.length} estimates</span></div></div>`;
+  const dn = $('#chDonut .dn2');
+  whenVisible($('#chDonut'), () => {
+    document.querySelectorAll('#chDonut .arc').forEach((a, i) => { a.style.setProperty('--d', (0.35 + i * 0.22).toFixed(2) + 's'); a.setAttribute('stroke-dasharray', a.dataset.da); });
+    if (dn) dn.classList.add('on');
+    const mb = $('#chDonut .mid b'); if (mb) countUp(mb, 400);
+    document.querySelectorAll('#chDonut .lt .p').forEach(p => countUp(p, 1100));
+  });
+
+  /* by salesperson */
+  const rb = {};
+  f.forEach(e => { const r = rb[e.rep] || (rb[e.rep] = {rep:e.rep, done:0, unatt:0}); const c = sheetCount(e); r.done += c.done; r.unatt += c.unatt; });
+  /* same order as the table, one bar on each row's level */
+  const order = [...document.querySelectorAll('#board tbody tr[data-rep]')].map(tr => tr.dataset.rep);
+  const reps = order.map(n => rb[n]).filter(Boolean);
+  const rmx = Math.max(1, ...reps.map(r => r.done + r.unatt));
+  $('#chReps').innerHTML = reps.length ? reps.map(r => `<div class="hb" data-k="${esc(r.rep)}" data-tip="<span class='h'>${esc(r.rep)}</span>${tipRow('Done', r.done)}${tipRow('Unattended', r.unatt)}${tipRow('Done share', pct(r.done, r.done + r.unatt) + '%')}">
+      <span class="l">${esc(r.rep.split(' ')[0])}</span>
+      <span class="rail">${r.done ? `<b class="g-ink" data-w="${r.done / rmx * 100}%"></b>` : ''}${r.unatt ? `<b class="g-un" data-w="${r.unatt / rmx * 100}%"></b>` : ''}</span>
+      <span class="v">${r.done}/${r.done + r.unatt}</span></div>`).join('') : '<div class="none">Nothing due today.</div>';
+  alignReps();
+
+  /* by centre */
+  vchart($('#chCentre'), CENTERS.map(c => ({c, t:agg(f.filter(e => (e.center || '').toLowerCase() === c.name.toLowerCase()))})).filter(x => x.t.sched).map(({c, t}) => ({
+    label:esc(c.name).replace(' ', '<br>'), dot:c.color, top:pct(t.done, t.sched) + '%',
+    segs:[{v:t.done, cls:'gv-c', style:`--c:${c.color}`}, {v:t.sched - t.done, cls:'gv-co', style:`--c:${c.color}`}],
+    tip:`<span class='h'>${esc(c.name)}</span>${tipRow('Done', t.done + ' of ' + t.sched)}${tipRow('Unattended', t.unatt)}${tipRow('Remaining', money(t.remaining))}`
+  })));
+
+  /* money by stage — horizontal */
+  const by = {};
+  f.forEach(e => { const k = stageOf(e); const r = by[k] || (by[k] = {k, un:0, fu:0, n:0}); r.n++; if (isOpen(e)) r.un += e.price; else r.fu += e.price; });
+  const st = Object.values(by).sort((a, b) => (b.un + b.fu) - (a.un + a.fu)).slice(0, 8);
+  const mx = Math.max(1, ...st.map(r => r.un + r.fu));
+  $('#chStage').innerHTML = st.length ? '<div style="padding-top:14px">' + st.map(r => `<div class="hb" data-tip="<span class='h'>${esc(r.k)}</span>${tipRow('Followed up', money(r.fu))}${tipRow('Unattended', money(r.un))}${tipRow('Estimates', r.n)}">
+      <span class="l">${esc(r.k)}</span><span class="rail">${r.fu ? `<b class="g-ink" data-w="${r.fu / mx * 100}%"></b>` : ''}${r.un ? `<b class="g-un" data-w="${r.un / mx * 100}%"></b>` : ''}</span><span class="v">${kmoney(r.un + r.fu)}</span></div>`).join('') + '</div>'
+    : '<div class="none">Nothing due today.</div>';
+
+  /* how old today's estimates are — value by age since created */
+  const AGES = [{l:'0–14<br>days', n:'0–14 days', lo:0, hi:14}, {l:'15–30<br>days', n:'15–30 days', lo:15, hi:30}, {l:'31–60<br>days', n:'31–60 days', lo:31, hi:60}, {l:'60+<br>days', n:'More than 60 days', lo:61, hi:1e9}];
+  const ab = AGES.map(() => ({fu:0, un:0, n:0})), nd = {fu:0, un:0, n:0};
+  f.forEach(e => { const d = daysSince(e.created); const i = d == null ? -1 : AGES.findIndex(g => d >= g.lo && d <= g.hi); const b = i < 0 ? nd : ab[i]; b.n++; if (isOpen(e)) b.un += e.price; else b.fu += e.price; });
+  const ageCols = AGES.map((g, i) => ({g, x:ab[i]}));
+  if (nd.n) ageCols.push({g:{l:'No<br>date', n:'No created date'}, x:nd});
+  vchart($('#chSteps'), ageCols.map(({g, x}) => ({
+    label:g.l, top:x.fu + x.un ? kmoney(x.fu + x.un) : '',
+    segs:[{v:x.fu, cls:'gv-ink'}, {v:x.un, cls:'gv-un'}],
+    tip:`<span class='h'>${g.n}</span>${tipRow('Estimates', x.n)}${tipRow('Followed up', money(x.fu))}${tipRow('Unattended', money(x.un))}`
+  })));
+  /* whole team · today — one tall column per salesperson */
+  const tb = {};
+  list.forEach(e => { const r = tb[e.rep] || (tb[e.rep] = {rep:e.rep, done:0, unatt:0, sched:0}); const c = sheetCount(e); r.done += c.done; r.unatt += c.unatt; r.sched += c.sched; });
+  const team = Object.values(tb).filter(r => r.sched).sort((a, b) => b.sched - a.sched || a.rep.localeCompare(b.rep));
+  vchart($('#chTeam'), team.map(r => ({
+    key:esc(r.rep), label:esc(r.rep.split(' ')[0]) + (state.rep === r.rep ? ' ●' : ''), top:`${r.done}<small>/${r.sched}</small>`,
+    segs:[{v:r.done, cls:'gv-ink'}, {v:r.unatt, cls:'gv-un'}],
+    tip:`<span class='h'>${esc(r.rep)}</span>${tipRow('Done', r.done)}${tipRow('Unattended', r.unatt)}${tipRow('Done share', pct(r.done, r.sched) + '%')}`
+  })));
+  grow($('#charts')); grow($('#charts2')); grow($('#charts3'));
+}
+
+/* ============================================================
+   8. RENDER ALL
+   ============================================================ */
+const darken = (hex, k) => '#' + [1, 3, 5].map(i => Math.round(parseInt(hex.slice(i, i + 2), 16) * (1 - k)).toString(16).padStart(2, '0')).join('');
+/* the header wears the colour of what's selected (as in Helm); never FASTSIGNS red */
+function paintTopbar(){
+  const bar = $('#topbar'); if (!bar) return;
+  const L = state.lens;
+  const c = L === 'valley' ? CBY['tarzana'].color : L === 'southbay' ? CBY['long beach'].color : (CBY[String(L).toLowerCase()] || {}).color;
+  bar.style.setProperty('--topbar-bg', c ? darken(c, 0.26) : '');
+  bar.classList.toggle('tinted', !!c);
+}
+function renderNav(){
+  paintTopbar();
+  $('#centres').innerHTML = CENTERS.map(c => `<button data-lens="${esc(c.name)}" aria-pressed="${state.lens === c.name}"><i style="background:${c.color}"></i>${esc(c.name)}</button>`).join('');
+  document.querySelectorAll('#districts button').forEach(b => b.setAttribute('aria-pressed', b.dataset.lens === state.lens));
+}
+function render(){
+  if (!DATA) return;
+  $('#dateLine').textContent = DATA.todayLabel;
+  document.body.classList.add('ready');
+  const list = dueToday();
+  renderNav(); renderPane(); renderDay(list); renderTable(list); renderCharts(list); renderAllTime(); renderTrend(); renderYesterday();
+}
+
+/* ============================================================
+   LAST TWO WEEKS — done vs not done, each workday
+   ============================================================ */
+function lastWorkdays(n){
+  const out = []; let d = new Date(DATA.today + 'T12:00:00Z');
+  while (out.length < n){ if (d.getUTCDay() !== 0 && d.getUTCDay() !== 6) out.unshift(d.toISOString().slice(0, 10)); d = new Date(d - 864e5); }
+  return out;
+}
+const TR_COL = ['#0A2F5C','#C9444A','#2E8B7A','#D08A2E','#8E5BA8','#4F9BD0','#B5527A','#7A8F3A','#5B6770','#A0522D','#3F6E9E','#C7A23A'];
+function renderTrend(){
+  if (!DATA) return;
+  const mode = state.trendMode || 'rate';
+  const days = lastWorkdays(10), first = days[0];
+  const blank = () => Object.fromEntries(days.map(d => [d, {done:0, miss:0}]));
+  const T = blank(), by = {};
+  DATA.estimates.filter(inLens).forEach(e => {
+    const fin = finalOf(e), seenK = {};
+    const R0 = by[e.rep] || (by[e.rep] = blank());
+    const add = (d, k) => { T[d][k]++; R0[d][k]++; };
+    e.slots.forEach(s => {
+      if (!T[s.date] || (fin && s.n > fin.slot.n)) return;
+      seenK[s.n + '|' + s.date] = 1;
+      add(s.date, s.done ? 'done' : 'miss');
+    });
+    if (e.rec) e.rec.rounds.forEach(R => {
+      const doneK = {};
+      R.done.forEach(([on, n, how, st, due]) => { doneK[n + '|' + due] = 1; if (T[due] && !seenK[n + '|' + due]){ seenK[n + '|' + due] = 1; add(due, 'done'); } });
+      (R.missed || []).forEach(([on, n, how, due]) => { if (T[due] && !seenK[n + '|' + due] && !doneK[n + '|' + due]){ seenK[n + '|' + due] = 1; add(due, 'miss'); } });
+    });
+  });
+  const names = Object.keys(by).sort((a, b) => a.localeCompare(b));
+  const reps = names.map((r, i) => { const done = days.reduce((a, d) => a + by[r][d].done, 0), miss = days.reduce((a, d) => a + by[r][d].miss, 0); return {rep:r, s:by[r], done, miss, due:done + miss, c:TR_COL[i % TR_COL.length]}; })
+    .filter(r => r.due > 0)
+    .sort(mode === 'rate' ? (a, b) => b.done / b.due - a.done / a.due || b.due - a.due : (a, b) => b.miss - a.miss || a.rep.localeCompare(b.rep));
+  const val = v => mode === 'rate' ? (v.done + v.miss ? v.done / (v.done + v.miss) * 100 : null) : (v.done + v.miss ? v.miss : null);
+
+  const W = 1200, H = 340, pl = 52, pr = 176, pt = 24, pb = 54;
+  const tv = days.map(d => T[d]);
+  const nice = m => { const st = m <= 8 ? 2 : m <= 20 ? 5 : Math.ceil(m / 4 / 5) * 5; const tp = Math.ceil(m / st) * st; return [st, tp > m ? tp : tp + st]; };
+  let stR, topR, stT, topT;
+  if (mode === 'rate'){ stR = 25; topR = 100; stT = 25; topT = 100; }
+  else { [stR, topR] = nice(Math.max(2, ...reps.flatMap(r => days.map(d => r.s[d].miss)))); [stT, topT] = nice(Math.max(4, ...tv.map(v => v.miss))); }
+  const X = i => pl + i * (W - pl - pr) / (days.length - 1);
+  const Y = v => pt + (1 - v / topR) * (H - pt - pb), YT = v => pt + (1 - v / topT) * (H - pt - pb), base = Y(0);
+  const curve = pts => {                                   /* monotone cubic through one run of points */
+    if (pts.length === 1) return '';
+    const dx = [], m = [], t = [];
+    for (let i = 0; i < pts.length - 1; i++){ dx.push(pts[i + 1][0] - pts[i][0]); m.push((pts[i + 1][1] - pts[i][1]) / dx[i]); }
+    t.push(m[0]); for (let i = 1; i < m.length; i++) t.push(m[i - 1] * m[i] <= 0 ? 0 : (m[i - 1] + m[i]) / 2); t.push(m[m.length - 1]);
+    let d = `M${pts[0][0]},${pts[0][1]}`;
+    for (let i = 0; i < pts.length - 1; i++){ const h = dx[i] / 3; d += ` C${(pts[i][0] + h).toFixed(1)},${(pts[i][1] + t[i] * h).toFixed(1)} ${(pts[i + 1][0] - h).toFixed(1)},${(pts[i + 1][1] - t[i + 1] * h).toFixed(1)} ${pts[i + 1][0]},${pts[i + 1][1]}`; }
+    return d;
+  };
+  /* a line with gaps: days with nothing due break it */
+  const runs = (arr, y) => { const out = []; let cur = []; arr.forEach((v, i) => { if (v == null){ if (cur.length) out.push(cur); cur = []; } else cur.push([+X(i).toFixed(1), +y(v).toFixed(1)]); }); if (cur.length) out.push(cur); return out; };
+  const straight = pts => pts.length > 1 ? 'M' + pts.map(p => p.join(',')).join(' L') : '';
+  const lineD = (arr, y) => runs(arr, y).map(curve).join(' ');
+
+  /* the team mountain */
+  const teamVals = tv.map(val);
+  const teamRuns = runs(teamVals, YT);
+  const mountain = teamRuns.filter(r => r.length > 1).map(r => curve(r) + ` L${r[r.length - 1][0]},${base} L${r[0][0]},${base} Z`).join(' ');
+  const teamEdge = teamRuns.map(curve).join(' ');
+
+  const WD = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const tDone = tv.reduce((a, v) => a + v.done, 0), tMiss = tv.reduce((a, v) => a + v.miss, 0);
+  $('#trAside').textContent = `${fmtDate(first)} – ${fmtDate(DATA.today)} · team ${pct(tDone, tDone + tMiss)}% done · ${tMiss} missed of ${tDone + tMiss}`;
+  [...$('#trMode').children].forEach(b => b.setAttribute('aria-pressed', b.dataset.m === mode));
+  $('#trKey').innerHTML = mode === 'rate'
+    ? `<span><i style="background:linear-gradient(90deg,#7FA7D1,#3F6E9E)"></i>Team completion rate</span><span>Lines · each salesperson's completion rate · gaps = nothing due · small dots = 1–2 due</span>`
+    : `<span><i style="background:linear-gradient(90deg,#DADCE1,#B9BBC1)"></i>Team missed (right scale)</span><span>Lines · each salesperson's missed follow-ups (left scale) · gaps = nothing due</span>`;
+
+  const fmtV = v => mode === 'rate' ? Math.round(v) + '%' : String(v);
+  const lastOf = r => { for (let i = days.length - 1; i >= 0; i--){ const v = val(r.s[days[i]]); if (v != null) return {v, i}; } return null; };
+  const ends = reps.map(r => ({r, l:lastOf(r)})).filter(x => x.l).map(x => ({r:x.r, v:x.l.v, y:Y(x.l.v)})).sort((a, b) => a.y - b.y);
+  for (let i = 1; i < ends.length; i++) if (ends[i].y - ends[i - 1].y < 13) ends[i].y = ends[i - 1].y + 13;
+  const over = ends.length ? ends[ends.length - 1].y - (base + 4) : 0; if (over > 0) ends.forEach(x => x.y -= over);
+  const gridN = topR / stR, gridT = topT / stT;
+
+  $('#chTrend').classList.remove('on');
+  $('#chTrend').innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${mode === 'rate' ? 'Completion rate' : 'Missed follow-ups'} per salesperson, last 10 workdays">
+    <defs><linearGradient id="trTeam" x1="0" y1="0" x2="0" y2="1">${mode === 'rate'
+      ? '<stop offset="0" stop-color="#3F6E9E" stop-opacity=".26"/><stop offset="1" stop-color="#7FA7D1" stop-opacity=".06"/>'
+      : '<stop offset="0" stop-color="#0E0F13" stop-opacity=".10"/><stop offset="1" stop-color="#0E0F13" stop-opacity=".02"/>'}</linearGradient></defs>
+    <g class="tr-grid">${Array.from({length: gridN + 1}, (_, k) => `<line x1="${pl}" x2="${W - pr}" y1="${Y(k * stR)}" y2="${Y(k * stR)}"/><text x="${pl - 12}" y="${Y(k * stR) + 3.5}" text-anchor="end">${mode === 'rate' ? k * stR + '%' : k * stR}</text>`).join('')}
+      <text x="${pl - 12}" y="${pt - 10}" text-anchor="end" class="ax">${mode === 'rate' ? 'Done' : 'Each'}</text>
+      ${days.map((d, i) => `<line class="vday" x1="${X(i)}" x2="${X(i)}" y1="${pt}" y2="${base + 12}"/>`).join('')}
+      ${mode === 'miss' ? `<text x="${W - pr + 8}" y="${pt - 10}" class="ax axt2">Team</text>${Array.from({length: gridT + 1}, (_, k) => `<text class="axt" x="${W - pr + 8}" y="${YT(k * stT) + 3.5}">${k === 0 ? '' : k * stT}</text>`).join('')}` : ''}</g>
+    <g class="tr-bg"><path class="tr-area" d="${mountain}" fill="url(#trTeam)"/><path class="tr-edge" d="${teamEdge}" pathLength="1" style="stroke:${mode === 'rate' ? '#3F6E9E' : '#9A9CA3'}"/></g>
+    <g class="tr-reps">${reps.map((r, i) => { const arr = days.map(d => val(r.s[d]));
+      return `<path class="tr-line" data-rep="${esc(r.rep)}" style="--d:${(0.4 + i * 0.08).toFixed(2)}s;stroke:${r.c}" d="${lineD(arr, Y)}" pathLength="1"/>` +
+        arr.map((v, k) => { if (v == null) return ''; const due = r.s[days[k]].done + r.s[days[k]].miss; return `<circle class="tr-pt" data-rep="${esc(r.rep)}" style="--d:${(0.9 + k * 0.06).toFixed(2)}s" cx="${X(k).toFixed(1)}" cy="${Y(v).toFixed(1)}" r="${mode === 'rate' && due <= 2 ? 1.6 : 2.6}" fill="${r.c}"/>`; }).join(''); }).join('')}</g>
+    <g class="tr-x">${days.map((d, i) => `<text class="wd ${d === DATA.today ? 'today' : ''}" x="${X(i)}" y="${H - pb + 24}" text-anchor="middle">${d === DATA.today ? 'Today' : WD[new Date(d + 'T12:00:00Z').getUTCDay()]}</text><text class="${d === DATA.today ? 'today' : ''}" x="${X(i)}" y="${H - pb + 40}" text-anchor="middle">${fmtDate(d)}</text>`).join('')}</g>
+    <g class="tr-end">${ends.map(x => `<text data-rep="${esc(x.r.rep)}" x="${W - pr + 46}" y="${(x.y + 3.5).toFixed(1)}" fill="${x.r.c}">${esc(x.r.rep.split(' ')[0])} ${fmtV(x.v)}</text>`).join('')}</g>
+    <g class="tr-valsg">${reps.map(r => `<g class="tr-vals" data-rep="${esc(r.rep)}">${days.map((d, k) => { const v = val(r.s[d]); return v == null ? '' : `<text x="${X(k).toFixed(1)}" y="${(Y(v) - 9).toFixed(1)}" text-anchor="middle" fill="${r.c}">${fmtV(v)}</text>`; }).join('')}</g>`).join('')}</g>
+    <line class="tr-guide" id="trGuide" x1="0" x2="0" y1="${pt}" y2="${base}"/>
+    <rect class="tr-hit" id="trHit" x="${pl - 20}" y="${pt - 10}" width="${W - pr - pl + 40}" height="${base - pt + 20}" data-tip=""/>
+  </svg>
+  <div class="tr-legend">${reps.map(r => `<button data-rep="${esc(r.rep)}"><i style="background:${r.c}"></i>${esc(r.rep)}${mode === 'rate' ? `<b>${pct(r.done, r.due)}%</b><span>${r.done}/${r.due}</span>` : `<b>${r.miss}</b><span>missed of ${r.due}</span>`}</button>`).join('')}</div>`;
+  applyTrendFocus(state.rep);
+  const box = $('#chTrend');
+  box.classList.remove('settled');
+  whenVisible(box, () => { box.classList.add('on'); setTimeout(() => box.classList.add('settled'), 2600); });
+
+  /* hover: the nearest line at the cursor lights up and tells its numbers */
+  const svg = box.querySelector('svg'), hit = $('#trHit'), guide = $('#trGuide');
+  const stepX = (W - pl - pr) / (days.length - 1);
+  hit.addEventListener('mousemove', ev => {
+    const pt0 = svg.createSVGPoint(); pt0.x = ev.clientX; pt0.y = ev.clientY;
+    const p = pt0.matrixTransform(svg.getScreenCTM().inverse());
+    const i = Math.max(0, Math.min(days.length - 1, Math.round((p.x - pl) / stepX))), d = days[i];
+    guide.setAttribute('x1', X(i)); guide.setAttribute('x2', X(i)); guide.classList.add('on');
+    let best = null, bd = 26;
+    reps.forEach(r => { const v = val(r.s[d]); if (v == null) return; const dist = Math.abs(Y(v) - p.y); if (dist < bd){ bd = dist; best = r; } });
+    const WDn = WD[new Date(d + 'T12:00:00Z').getUTCDay()], v = tv[i], due = v.done + v.miss;
+    if (best){
+      const b = best.s[d], bdue = b.done + b.miss;
+      applyTrendFocus(best.rep);
+      hit.dataset.tip = `<span class='h'>${esc(best.rep)}</span>${tipRow(WDn + ', ' + fmtDate(d), d === DATA.today ? 'so far' : '')}${tipRow('Completion', pct(b.done, bdue) + '%')}${tipRow('Done', b.done + ' of ' + bdue)}${tipRow('Missed', b.miss)}${tipRow('Two weeks', pct(best.done, best.due) + '% · ' + best.done + '/' + best.due)}`;
+    } else {
+      applyTrendFocus(state.rep);
+      const list = reps.map(r => ({r, v:r.s[d]})).filter(x => x.v.done + x.v.miss)
+        .sort(mode === 'rate' ? (a, b) => b.v.done / (b.v.done + b.v.miss) - a.v.done / (a.v.done + a.v.miss) : (a, b) => b.v.miss - a.v.miss);
+      hit.dataset.tip = `<span class='h'>${WDn}, ${fmtDate(d)}${d === DATA.today ? ' · so far' : ''}</span>` +
+        (mode === 'rate' ? tipRow('Team', due ? pct(v.done, due) + '% · ' + v.done + '/' + due : 'Nothing due') + list.map(x => tipRow(esc(x.r.rep.split(' ')[0]), pct(x.v.done, x.v.done + x.v.miss) + '% · ' + x.v.done + '/' + (x.v.done + x.v.miss))).join('')
+          : tipRow('Team missed', v.miss + ' of ' + due) + list.map(x => tipRow(esc(x.r.rep.split(' ')[0]), x.v.miss + ' of ' + (x.v.done + x.v.miss))).join(''));
+    }
+  });
+  hit.addEventListener('mouseleave', () => { guide.classList.remove('on'); applyTrendFocus(state.rep); });
+  hit.addEventListener('click', () => { const h = box.querySelector('.tr-line.hi'); if (h){ const k = h.getAttribute('data-rep'); state.rep = state.rep === k ? null : k; render(); } });
+}
+function applyTrendFocus(rep){
+  const box = $('#chTrend'); if (!box) return;
+  box.classList.toggle('focus', !!rep);
+  box.querySelectorAll('[data-rep]').forEach(el => el.classList.toggle('hi', !!rep && el.getAttribute('data-rep') === rep));
+}
+
+/* ============================================================
+   YESTERDAY — what was due, what got done, what slipped
+   ============================================================ */
+function setView(v){
+  state.view = v;
+  document.body.classList.toggle('view-y', v === 'yesterday');
+  [...$('#views').children].forEach(b => b.setAttribute('aria-pressed', b.dataset.view === v));
+  window.scrollTo({top:0});
+  if (v === 'yesterday') renderYesterday();
+}
+/* the last workday before today (Monday → Friday) */
+function prevWorkday(iso){
+  let d = new Date(iso + 'T12:00:00Z');
+  do { d = new Date(d - 864e5); } while (d.getUTCDay() === 0 || d.getUTCDay() === 6);
+  return d.toISOString().slice(0, 10);
+}
+function yesterdayItems(){
+  const y = prevWorkday(DATA.today), out = [];
+  DATA.estimates.filter(inLens).forEach(e => {
+    const fin = finalOf(e), seenN = {};
+    const rec = e.rec, recDone = {}, recMiss = [];
+    if (rec) rec.rounds.forEach(R => { R.done.forEach(([on, n, how, st, due]) => { if (due === y) recDone[n] = on; }); (R.missed || []).forEach(([on, n, how, due]) => { if (due === y) recMiss.push({n, how}); }); });
+    e.slots.forEach(s => {
+      if (s.date !== y) return;
+      if (fin && s.n > fin.slot.n) return;
+      seenN[s.n] = 1;
+      const how = /call/i.test(s.outreach) ? 'Call' : 'Email';
+      if (s.done){
+        const on = recDone[s.n];
+        out.push({e, n:s.n, how, state: on && on > y ? 'late' : 'ontime', now: on && on > y ? {k:'done', on} : null});
+      } else out.push({e, n:s.n, how, state:'missed', now:{k:'open'}});
+    });
+    recMiss.forEach(m => {                        // missed, then moved or re-triggered: still counts
+      if (seenN[m.n]) return; seenN[m.n] = 1;
+      const cur = e.slots.find(s => s.n === m.n);
+      const doneLate = recDone[m.n];
+      out.push({e, n:m.n, how:m.how, state: doneLate ? 'late' : 'missed', now: doneLate ? {k:'done', on:doneLate} : cur && cur.date && cur.date !== y ? {k:'moved', to:cur.date} : {k:'open'}});
+    });
+  });
+  return {y, items: out};
+}
+function renderYesterday(){
+  if (!DATA || state.view !== 'yesterday') return;
+  const {y, items} = yesterdayItems();
+  const f = state.rep ? items.filter(i => i.e.rep === state.rep) : items;
+  const yl = (() => { const d = new Date(y + 'T12:00:00Z'); return ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][d.getUTCDay()] + ', ' + fmtDate(y); })();
+  $('#yTitle').textContent = 'Yesterday · ' + yl;
+  const cnt = l => ({due:l.length, ontime:l.filter(i => i.state === 'ontime').length, late:l.filter(i => i.state === 'late').length, missed:l.filter(i => i.state === 'missed').length});
+  const T = cnt(f);
+  const missEst = [...new Set(f.filter(i => i.state !== 'ontime').map(i => i.e))];
+  const missVal = missEst.reduce((a, e) => a + e.price, 0);
+  const fig = (k, v, n, red) => `<div class="fig"><div class="k">${k}</div><div class="v ${red ? 'red' : ''}">${v}</div><div class="n">${n}</div></div>`;
+  $('#yStrip').innerHTML =
+    fig('Due', T.due, `follow-ups on ${fmtDate(y)}`) +
+    fig('On time', `${pct(T.ontime, T.due)}<small>%</small>`, `${T.ontime} of ${T.due} done that day`) +
+    fig('Done late', T.late, 'caught up today') +
+    fig('Still missed', T.missed, 'never done', T.missed > 0) +
+    fig('Value at risk', kmoney(missVal), `${missEst.length} estimate${missEst.length === 1 ? '' : 's'} slipped`) +
+    fig('Calls missed', f.filter(i => i.state === 'missed' && i.how === 'Call').length, 'of ' + f.filter(i => i.how === 'Call').length + ' calls due');
+  $('#ySay').innerHTML = T.due
+    ? `<b>${esc(state.rep || 'The team')}</b> had ${T.due} follow-ups due on ${yl}. ${T.ontime} were done that day${T.late ? `, ${T.late} were caught up today` : ''}${T.missed ? `, and <span class="r">${T.missed} still haven't been done.</span>` : '. Nothing is left.'}` + (state.rep ? `<button class="show-all">Show everyone</button>` : '')
+    : `Nothing was due on ${yl}.`;
+
+  /* by salesperson */
+  const by = {};
+  items.forEach(i => { (by[i.e.rep] = by[i.e.rep] || []).push(i); });
+  const reps = Object.keys(by).map(r => Object.assign({rep:r, val:[...new Set(by[r].filter(i => i.state !== 'ontime').map(i => i.e))].reduce((a, e) => a + e.price, 0)}, cnt(by[r])))
+    .sort((a, b) => b.missed - a.missed || b.due - a.due || a.rep.localeCompare(b.rep));
+  const A = reps.reduce((t, r) => { ['due','ontime','late','missed','val'].forEach(k => t[k] += r[k]); return t; }, {due:0, ontime:0, late:0, missed:0, val:0});
+  const z = v => v ? '' : 'z';
+  const row = r => `<td class="r ${z(r.due)}">${r.due}</td><td class="r ${z(r.ontime)}">${r.ontime}</td><td class="r ${z(r.late)}">${r.late}</td><td class="r ${r.missed ? 'un' : 'z'}">${r.missed}</td>
+    <td><div class="cmp"><span class="cb"><b data-w="${pct(r.ontime, r.due)}%"></b></span><span>${pct(r.ontime, r.due)}%</span></div></td><td class="r m ${z(r.val)}">${money(r.val)}</td>`;
+  $('#yBoard').innerHTML = reps.length ? `<colgroup>${[22,10,11,10,11,20,16].map(w => `<col style="width:${w}%">`).join('')}</colgroup>
+    <thead><tr><th>Salesperson</th><th>Due</th><th>On time</th><th>Late</th><th>Missed</th><th style="text-align:left">On-time rate</th><th>Value at risk</th></tr></thead>
+    <tbody>${reps.map(r => `<tr data-rep="${esc(r.rep)}" class="${state.rep === r.rep ? 'sel' : ''}"><td class="nm">${esc(r.rep)}</td>${row(r)}</tr>`).join('')}</tbody>
+    <tfoot><tr><td>Total</td>${row(A)}</tr></tfoot>` : '<tbody><tr><td class="z" style="text-align:left">Nothing was due.</td></tr></tbody>';
+  const mx = Math.max(1, ...reps.map(r => r.due));
+  $('#chY').innerHTML = reps.map(r => `<div class="hb" data-k="${esc(r.rep)}" data-tip="<span class='h'>${esc(r.rep)}</span>${tipRow('On time', r.ontime)}${tipRow('Late', r.late)}${tipRow('Missed', r.missed)}">
+      <span class="l">${esc(r.rep.split(' ')[0])}</span>
+      <span class="rail">${r.ontime ? `<b class="g-ink" data-w="${r.ontime / mx * 100}%"></b>` : ''}${r.late ? `<b class="g-call" data-w="${r.late / mx * 100}%"></b>` : ''}${r.missed ? `<b class="g-un" data-w="${r.missed / mx * 100}%"></b>` : ''}</span>
+      <span class="v">${r.ontime}/${r.due}</span></div>`).join('');
+
+  /* every follow-up that slipped */
+  const slip = f.filter(i => i.state !== 'ontime').sort((a, b) => (a.state === 'missed' ? 0 : 1) - (b.state === 'missed' ? 0 : 1) || b.e.price - a.e.price);
+  $('#yCount').textContent = `${slip.length} follow-up${slip.length === 1 ? '' : 's'} · ${money(missVal)}`;
+  const nowCell = i => i.now.k === 'open' ? '<span class="now-open">Still open</span>' : i.now.k === 'done' ? `<span class="now-done">${CHECK}Done ${fmtDate(i.now.on)}</span>` : `<span class="now-moved">Moved to ${fmtDate(i.now.to)}</span>`;
+  $('#yTbl').innerHTML = `<colgroup>${[[130,10],0,[150,14],[130,11],[120,10],[90,8],[150,12],[96,9]].map(c => c ? `<col data-w="${c[0]}" data-p="${c[1]}" style="width:${c[0]}px">` : '<col>').join('')}</colgroup>
+    <thead><tr><th>Estimate</th><th>Customer</th><th>Salesperson</th><th>Stage</th><th>Follow-up</th><th>Yesterday</th><th>Now</th><th class="r">Value</th></tr></thead>
+    <tbody>${slip.length ? slip.map((i, k) => `<tr data-num="${esc(i.e.num)}" style="--d:${(Math.min(k, 16) * 0.04).toFixed(2)}s"><td class="num"><span class="cd" style="background:${colorOf(i.e)}"></span>${esc(i.e.num)}</td>
+      <td title="${esc(i.e.customer)}">${esc(i.e.customer || '—')}</td><td>${esc(i.e.rep)}</td><td title="${esc(i.e.priority)}">${esc(i.e.priority || '—')}</td>
+      <td>${String(i.n).padStart(2, '0')} · ${esc(i.how)}</td><td><span class="y-tag ${i.state === 'missed' ? 'miss' : 'late'}">${i.state === 'missed' ? 'Missed' : 'Late'}</span></td>
+      <td>${nowCell(i)}</td><td class="r val">${money(i.e.price)}</td></tr>`).join('') : '<tr><td colspan="8" class="s-mute" style="padding:18px 9px">Nothing slipped yesterday.</td></tr>'}</tbody>`;
+  sizeCols($('#yTbl')); grow($('#s4')); requestAnimationFrame(alignY);
+}
+function alignY(){
+  const box = $('#chY'); if (!box || state.view !== 'yesterday') return;
+  const b = box.getBoundingClientRect();
+  box.querySelectorAll('.hb[data-k]').forEach(h => {
+    const tr = document.querySelector(`#yBoard tbody tr[data-rep="${CSS.escape(h.dataset.k)}"]`);
+    if (!tr){ h.style.display = 'none'; return; }
+    const r = tr.getBoundingClientRect(); h.style.display = ''; h.style.top = (r.top + r.height / 2 - b.top) + 'px';
+  });
+}
+
+/* ---------- 05 · follow-up completion, all time ---------- */
+const blankAll = rep => ({rep, est:0, due:0, done:0, emD:0, emS:0, caD:0, caS:0, rec:0, recNew:0, recUnc:0, wins:0, winTouch:0});
+function allTimeStats(){
+  const by = {};
+  DATA.estimates.filter(inLens).forEach(e => {
+    if (e.rec){                                          // the record: every round
+      const r = by[e.rep] || (by[e.rep] = blankAll(e.rep));
+      e.rec.rounds.forEach(R => { r.rec += R.done.length; if (/unclosed/i.test(R.type)) r.recUnc += R.done.length; else r.recNew += R.done.length; });
+      const z = finalOf(e); if (z && z.ap){ r.wins++; r.winTouch += e.rec.total; }
+    }
+    const fin = finalOf(e);
+    let counted = false;
+    e.slots.forEach(s => {
+      if (fin && s.n > fin.slot.n) return;              // not needed after approve / cancel
+      if (s.date > DATA.today) return;                   // not due yet
+      if (s.date === DATA.today && !s.done) return;      // due today, not missed yet
+      const r = by[e.rep] || (by[e.rep] = blankAll(e.rep));
+      if (!counted){ r.est++; counted = true; }
+      r.due++; if (s.done) r.done++;
+      if (/email/i.test(s.outreach)){ r.emS++; if (s.done) r.emD++; }
+      else if (/call/i.test(s.outreach)){ r.caS++; if (s.done) r.caD++; }
+    });
+  });
+  return Object.values(by).filter(r => r.due > 0 || r.rec > 0)
+    .map(r => Object.assign(r, {missed:r.due - r.done, rate:r.due ? r.done / r.due : 0}))
+    .sort((a, b) => b.rate - a.rate || b.due - a.due || a.rep.localeCompare(b.rep));
+}
+function renderAllTime(){
+  const rows = allTimeStats();
+  const K = ['est','due','done','missed','emD','emS','caD','caS','rec','recNew','recUnc','wins','winTouch'];
+  const T = rows.reduce((t, r) => { K.forEach(k => t[k] += r[k]); return t; }, Object.fromEntries(K.map(k => [k, 0])));
+  const hasRec = DATA.version >= 'v1.8';
+  const toWin = r => r.wins ? (r.winTouch / r.wins).toFixed(1) : '<span style="color:var(--ink-faint)">—</span>';
+  const recCell = r => `<td title="New ${r.recNew} · Unclosed ${r.recUnc}">${r.rec}</td><td title="${r.wins} approved">${toWin(r)}</td>`;
+  const best = rows.length ? rows[0].rate : -1;
+  $('#allTbl').innerHTML = rows.length ? `<colgroup>${(hasRec ? [5.5,16,8,6.5,6.5,7,14,9,9,9.5,9] : [4.5,20,9,7.5,7.5,8,18.5,12.5,12.5]).map(w => `<col style="width:${w}%">`).join('')}</colgroup>
+    <thead><tr><th>#</th><th style="text-align:left">Salesperson</th><th>Estimates</th><th>Due</th><th>Done</th><th>Missed</th><th style="text-align:left">Completion</th><th>Emails</th><th>Calls</th>${hasRec ? '<th>All rounds</th><th>To win</th>' : ''}</tr></thead>
+    <tbody>${rows.map((r, i) => `<tr data-rep="${esc(r.rep)}"><td class="rk" style="text-align:left">${String(i + 1).padStart(2, '0')}</td><td class="nm" style="text-align:left">${esc(r.rep)}${r.rate === best ? '<span class="top-mk">Top</span>' : ''}</td>
+      <td>${r.est}</td><td>${r.due}</td><td>${r.done}</td><td class="${r.missed ? 'un' : ''}" style="${r.missed ? '' : 'color:var(--ink-faint)'}">${r.missed}</td>
+      <td><div class="cmp"><span class="cb"><b data-w="${Math.round(r.rate * 100)}%"></b></span><span>${Math.round(r.rate * 100)}%</span></div></td>
+      <td>${r.emD}/${r.emS}</td><td>${r.caD}/${r.caS}</td>${hasRec ? recCell(r) : ''}</tr>`).join('')}</tbody>
+    <tfoot><tr><td></td><td style="text-align:left">Total</td><td>${T.est}</td><td>${T.due}</td><td>${T.done}</td><td class="un">${T.missed}</td>
+      <td><div class="cmp"><span class="cb"><b data-w="${pct(T.done, T.due)}%"></b></span><span>${pct(T.done, T.due)}%</span></div></td><td>${T.emD}/${T.emS}</td><td>${T.caD}/${T.caS}</td>${hasRec ? recCell(T) : ''}</tr></tfoot>`
+    : '<tbody><tr><td class="none">No follow-ups due yet.</td></tr></tbody>';
+  $('#chAll').innerHTML = rows.map(r => `<div class="hb" data-k="${esc(r.rep)}" data-tip="<span class='h'>${esc(r.rep)}</span>${tipRow('Done', r.done + ' of ' + r.due)}${tipRow('Missed', r.missed)}${tipRow('Estimates', r.est)}">
+      <span class="l">${esc(r.rep.split(' ')[0])}</span>
+      <span class="rail">${r.done ? `<b class="g-ink" data-w="${r.rate * 100}%"></b>` : ''}${r.missed ? `<b class="g-un" data-w="${(1 - r.rate) * 100}%"></b>` : ''}</span>
+      <span class="v">${Math.round(r.rate * 100)}%</span></div>`).join('');
+  renderRecordCharts(hasRec);
+  grow($('#s3')); alignAll();
+}
+/* weekly activity + estimates by round, from the record */
+function renderRecordCharts(hasRec){
+  $('#s3b').style.display = hasRec ? '' : 'none';
+  if (!hasRec) return;
+  const est = DATA.estimates.filter(e => inLens(e) && e.rec);
+  const mon = iso => { const d = new Date(iso + 'T12:00:00Z'); return new Date(d - ((d.getUTCDay() + 6) % 7) * 864e5).toISOString().slice(0, 10); };
+  const w0 = mon(DATA.today);
+  const weeks = Array.from({length:10}, (_, i) => new Date(Date.parse(w0 + 'T12:00:00Z') - (9 - i) * 7 * 864e5).toISOString().slice(0, 10));
+  const wk = Object.fromEntries(weeks.map(w => [w, {em:0, ca:0}]));
+  est.forEach(e => e.rec.rounds.forEach(R => R.done.forEach(([on, , how]) => { const b = wk[mon(on)]; if (b){ if (how === 'Call') b.ca++; else b.em++; } })));
+  vchart($('#chWeeks'), weeks.map(w => ({
+    label:fmtDate(w).replace(' ', '<br>'), top:wk[w].em + wk[w].ca || '',
+    segs:[{v:wk[w].em, cls:'gv-ink'}, {v:wk[w].ca, cls:'gv-call'}],
+    tip:`<span class='h'>Week of ${fmtDate(w)}</span>${tipRow('Emails', wk[w].em)}${tipRow('Calls', wk[w].ca)}`
+  })));
+  const rb = [1, 2, 3].map(n => ({n, nw:0, un:0}));
+  est.forEach(e => { const R = e.rec.rounds[0], b = rb[Math.min(R.n, 3) - 1]; if (/unclosed/i.test(R.type)) b.un++; else b.nw++; });
+  vchart($('#chRounds'), rb.map(b => ({
+    label:b.n === 3 ? 'Round<br>3+' : 'Round<br>' + b.n, top:b.nw + b.un || '',
+    segs:[{v:b.nw, cls:'gv-ink'}, {v:b.un, cls:'gv-un'}],
+    tip:`<span class='h'>${b.n === 3 ? 'Round 3 or more' : 'Round ' + b.n}</span>${tipRow('New', b.nw)}${tipRow('Unclosed', b.un)}`
+  })));
+}
+function alignAll(){
+  const box = $('#chAll'); if (!box) return;
+  const b = box.getBoundingClientRect();
+  box.querySelectorAll('.hb[data-k]').forEach(h => {
+    const tr = document.querySelector(`#allTbl tbody tr[data-rep="${CSS.escape(h.dataset.k)}"]`);
+    if (!tr){ h.style.display = 'none'; return; }
+    const r = tr.getBoundingClientRect();
+    h.style.display = ''; h.style.top = (r.top + r.height / 2 - b.top) + 'px';
+  });
+}
+
+/* ============================================================
+   9. LOADING
+   ============================================================ */
+function saveLocal(d){ try { localStorage.setItem(SAVE_KEY, JSON.stringify(d)); } catch (e) {} }
+function readLocal(){ try { return JSON.parse(localStorage.getItem(SAVE_KEY) || 'null'); } catch (e) { return null; } }
+function stamp(){ $('#updated').textContent = DATA ? 'Updated ' + DATA.updatedAt.replace(' LA time', ' · LA') : 'Not loaded'; const f = $('#footUpd'); if (f) f.textContent = DATA ? (DATA.todayLabel || '') + ' · Updated ' + DATA.updatedAt : ''; }
+function busy(on){ $('#liveDot').classList.toggle('busy', on); if (on) $('#updated').textContent = 'Updating'; }
+let bootN = 0;
+const bootT = setInterval(() => { bootN += (92 - bootN) * 0.06; $('#bootN').textContent = Math.round(bootN); $('#bootArc').style.strokeDashoffset = 703.7 - 7.037 * bootN; }, 60);
+function bootEnd(){ clearInterval(bootT); $('#bootN').textContent = 100; $('#bootArc').style.strokeDashoffset = 0; setTimeout(() => $('#boot').classList.add('done'), 350); }
+function load(fresh){
+  if (window.DEMO_DATA){ DATA = window.DEMO_DATA; stamp(); render(); bootEnd(); return; }
+  busy(true);
+  fetch(API_URL + (fresh ? '&fresh=1' : '') + '&t=' + Date.now())
+    .then(r => r.text())
+    .then(txt => { let d; try { d = JSON.parse(txt); } catch (e) { throw new Error('the API did not return data. Check the key or the deployment.'); }
+      DATA = d; saveLocal(d); $('#errLine').classList.remove('show'); busy(false); stamp(); render(); bootEnd(); })
+    .catch(e => { busy(false); stamp(); bootEnd(); const el = $('#errLine'); el.textContent = "Couldn't load the sheet: " + (e && e.message); el.classList.add('show'); });
+}
+
+/* ============================================================
+   10. EVENTS
+   ============================================================ */
+document.addEventListener('click', ev => {
+  const lens = ev.target.closest('[data-lens]');
+  if (lens){ state.lens = lens.dataset.lens; state.rep = null; render(); return; }
+  const rep = ev.target.closest('#board tr[data-rep]');
+  if (rep){ state.rep = state.rep === rep.dataset.rep ? null : rep.dataset.rep; render(); return; }
+  const res = ev.target.closest('.res[data-num]');
+  if (res){ openEstimate(res.dataset.num, false); return; }
+  const th = ev.target.closest('#tbl th[data-sort]');
+  if (th){ const k = th.dataset.sort; state.sort = state.sort.k === k ? {k, d:-state.sort.d} : {k, d:(k === 'price' || k === 'track' || k === 'created') ? -1 : 1}; renderTable(dueToday()); return; }
+  const tr = ev.target.closest('#tbl tr[data-num]');
+  if (tr){ openEstimate(tr.dataset.num, false); const r = document.querySelector(`#tbl tr[data-num="${CSS.escape(tr.dataset.num)}"]`); if (r){ r.classList.remove('flash'); void r.offsetWidth; r.classList.add('flash'); } return; }
+});
+$('#stg').addEventListener('click', ev => { const b = ev.target.closest('button'); if (!b) return; state.stage = b.dataset.s; renderTable(dueToday()); });
+function drill(rep, tab){
+  state.rep = rep || null; state.tab = tab; state.stage = 'all';
+  [...$('#tabs').children].forEach(x => x.setAttribute('aria-pressed', x.dataset.t === tab));
+  render();
+  const top = $('#s2').getBoundingClientRect().top + scrollY - (document.querySelector('.topbar') ? document.querySelector('.topbar').offsetHeight : 0) - 8;
+  window.scrollTo({top, behavior:'smooth'});
+  const t = $('#tbl'); t.classList.remove('drilled'); void t.offsetWidth; t.classList.add('drilled');
+  setTimeout(() => t.classList.remove('drilled'), 1600);
+}
+document.addEventListener('click', ev => {
+  const c = ev.target.closest('#board td[data-go]');
+  if (c){ ev.stopPropagation(); const tr = c.closest('tr'); drill(tr.dataset.rep || null, c.dataset.go); return; }
+  const f = ev.target.closest('#strip .fig[data-go]');
+  if (f){ drill(state.rep, f.dataset.go); return; }
+  if (ev.target.closest(".show-all")){ state.rep = null; render(); return; }
+  const vb = ev.target.closest('#views button');
+  if (vb){ setView(vb.dataset.view); return; }
+  const tm = ev.target.closest('#trMode button');
+  if (tm){ state.trendMode = tm.dataset.m; renderTrend(); return; }
+  const tl = ev.target.closest('#chTrend .tr-legend button, #chTrend .tr-end text');
+  if (tl){ const k = tl.getAttribute('data-rep'); state.rep = state.rep === k ? null : k; render(); return; }
+  const tc = ev.target.closest('#chTeam .vcol[data-k]');
+  if (tc){ const k = tc.getAttribute('data-k'); state.rep = state.rep === k ? null : k; render(); return; }
+  const yr = ev.target.closest('#yBoard tbody tr[data-rep]');
+  if (yr){ state.rep = state.rep === yr.dataset.rep ? null : yr.dataset.rep; render(); return; }
+  const yt = ev.target.closest('#yTbl tr[data-num]');
+  if (yt){ setView('today'); openEstimate(yt.dataset.num, false); setTimeout(() => $('#s2').scrollIntoView({behavior:'smooth'}), 60); return; }
+  if (ev.target.closest('#tClear')){ state.rep = null; state.tab = 'all'; state.stage = 'all'; [...$('#tabs').children].forEach(x => x.setAttribute('aria-pressed', x.dataset.t === 'all')); render(); }
+}, true);
+$('#tabs').addEventListener('click', ev => { const b = ev.target.closest('button'); if (!b) return; state.tab = b.dataset.t; [...$('#tabs').children].forEach(x => x.setAttribute('aria-pressed', x === b)); renderTable(dueToday()); });
+let qt;
+$('#q').addEventListener('input', ev => { clearTimeout(qt); qt = setTimeout(() => { state.q = ev.target.value; state.open = null; renderPane(); markRows(); }, 120); });
+$('#qx').addEventListener('click', ev => { ev.preventDefault(); $('#q').value = ''; state.q = ''; state.open = null; renderPane(); markRows(); $('#q').focus(); });
+$('#refresh').addEventListener('click', () => load(true));
+/* logo = start over: clear every filter, back to the top, fresh data */
+function resetAll(){
+  Object.assign(state, {view:'today', lens:'both', rep:null, tab:'all', stage:'all', q:'', open:null, sort:{k:'def', d:-1}});
+  $('#q').value = '';
+  document.body.classList.remove('view-y');
+  [...$('#views').children].forEach(b => b.setAttribute('aria-pressed', b.dataset.view === 'today'));
+  [...$('#tabs').children].forEach(b => b.setAttribute('aria-pressed', b.dataset.t === 'all'));
+  window.scrollTo({top:0, behavior:'smooth'});
+  render(); load(true);
+}
+$('#home').addEventListener('click', resetAll);
+$('#home').addEventListener('keydown', ev => { if (ev.key === 'Enter' || ev.key === ' '){ ev.preventDefault(); resetAll(); } });
+document.addEventListener('keydown', ev => {
+  if (ev.key === '/' && document.activeElement.tagName !== 'INPUT'){ ev.preventDefault(); $('#s2').scrollIntoView({behavior:'smooth'}); $('#q').focus(); }
+  if (ev.key === 'Escape' && state.open){ state.open = null; renderPane(); markRows(); return; }
+  if (ev.key === 'Escape' && state.rep){ state.rep = null; render(); }
+});
+document.addEventListener('mouseover', ev => {
+  const t = ev.target.closest('#chTrend [data-rep]');
+  if (t) applyTrendFocus(t.getAttribute('data-rep'));
+  else if (ev.target.closest('#chTrend') && !ev.target.closest('#trHit')) applyTrendFocus(state.rep);
+});
+document.addEventListener('mouseout', ev => { if (ev.target.closest('#chTrend') && !ev.relatedTarget?.closest?.('#chTrend')) applyTrendFocus(state.rep); });
+const tip = $('#tip');
+document.addEventListener('mousemove', ev => {
+  const t = ev.target.closest('[data-tip]'); if (!t){ tip.classList.remove('on'); return; }
+  tip.innerHTML = t.dataset.tip; tip.classList.add('on');
+  let x = ev.clientX + 16, y = ev.clientY + 16;
+  if (x + tip.offsetWidth > innerWidth - 10) x = ev.clientX - tip.offsetWidth - 16;
+  if (y + tip.offsetHeight > innerHeight - 10) y = ev.clientY - tip.offsetHeight - 16;
+  tip.style.left = x + 'px'; tip.style.top = y + 'px';
+});
+let lastY = 0;
+addEventListener('scroll', () => {
+  const y = scrollY, tb = $('#topbar');
+  tb.classList.toggle('stuck', y > 8);
+  if (y > 140 && y > lastY + 2) tb.classList.add('retracted'); else if (y < lastY - 2 || y < 140) tb.classList.remove('retracted');
+  lastY = y;
+}, {passive:true});
+
+/* line each salesperson's bar up with their table row */
+function alignReps(){
+  const box = $('#chReps'); if (!box) return;
+  const b = box.getBoundingClientRect();
+  box.querySelectorAll('.hb[data-k]').forEach(h => {
+    const tr = document.querySelector(`#board tbody tr[data-rep="${CSS.escape(h.dataset.k)}"]`);
+    if (!tr){ h.style.display = 'none'; return; }
+    const r = tr.getBoundingClientRect();
+    h.style.display = ''; h.style.top = (r.top + r.height / 2 - b.top) + 'px';
+  });
+}
+addEventListener('resize', () => requestAnimationFrame(() => { sizeCols($('#tbl')); sizeCols($('#yTbl')); alignReps(); alignAll(); alignY(); }));
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { alignReps(); alignAll(); });
+setTimeout(() => { alignReps(); alignAll(); }, 1200);
+
+/* live LA clock */
+function tick(){ const el = $('#clock'); if (el) el.textContent = new Date().toLocaleTimeString('en-US', {timeZone:'America/Los_Angeles', hour:'numeric', minute:'2-digit'}); }
+tick(); setInterval(tick, 15000);
+
+/* point at a salesperson — the table and the chart answer each other */
+function lightRep(name){
+  const b = $('#board'), c = $('#chReps');
+  b.classList.toggle('focus', !!name); c.classList.toggle('focus', !!name);
+  b.querySelectorAll('tbody tr[data-rep]').forEach(r => r.classList.toggle('hot', r.dataset.rep === name));
+  c.querySelectorAll('.hb[data-k]').forEach(v => v.classList.toggle('hot', v.dataset.k === name));
+}
+document.addEventListener('mouseover', ev => {
+  const r = ev.target.closest('#board tbody tr[data-rep]') || ev.target.closest('#chReps .hb[data-k]');
+  lightRep(r ? (r.dataset.rep || r.dataset.k) : null);
+});
+
+/* start: last data instantly, then fresh */
+const saved = readLocal();
+if (saved && saved.today && !window.DEMO_DATA){ DATA = saved; stamp(); render(); bootEnd(); }
+load(false);
+setInterval(() => load(false), 5 * 60 * 1000);
+</script>
+</body>
+</html>
